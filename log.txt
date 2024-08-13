@@ -1,0 +1,208 @@
+Ele_Power: 4
+Ele_Vol: 4
+Ele_Ele: 4
+Ele_Resis: 4
+Power_Status: ON
+Power_Vol: 4
+Power_Ele: 4
+LH_Status: ON
+LH_Temp: 4
+Passage1Status: ON
+Passage2Status: ON
+Passage3Status: ON
+Passage4Status: OFF
+Passage5Status: OFF
+Passage6Status: OFF
+Passage7Status: OFF
+Passage8Status: OFF
+Passage9Status: OFF
+Passage10Status: OFF
+Passage11Status: OFF
+Passage12Status: ON
+Passage13Status: ON
+Passage14Status: ON
+Passage15Status: OFF
+Passage16Status: OFF
+--------------------
+Ele_Power: 2
+Ele_Vol: 2
+Ele_Ele: 
+Ele_Resis: 
+Power_Status: OFF
+Power_Vol: 
+Power_Ele: 
+LH_Status: OFF
+LH_Temp: 
+Passage1Status: OFF
+Passage2Status: OFF
+Passage3Status: OFF
+Passage4Status: OFF
+Passage5Status: OFF
+Passage6Status: OFF
+Passage7Status: OFF
+Passage8Status: OFF
+Passage9Status: OFF
+Passage10Status: OFF
+Passage11Status: OFF
+Passage12Status: OFF
+Passage13Status: OFF
+Passage14Status: OFF
+Passage15Status: OFF
+Passage16Status: OFF
+--------------------
+Ele_Power: 5
+Ele_Vol: 5
+Ele_Ele: 
+Ele_Resis: 
+Power_Status: OFF
+Power_Vol: 
+Power_Ele: 
+LH_Status: OFF
+LH_Temp: 
+Passage1Status: OFF
+Passage2Status: OFF
+Passage3Status: OFF
+Passage4Status: OFF
+Passage5Status: OFF
+Passage6Status: OFF
+Passage7Status: OFF
+Passage8Status: OFF
+Passage9Status: OFF
+Passage10Status: OFF
+Passage11Status: OFF
+Passage12Status: OFF
+Passage13Status: OFF
+Passage14Status: OFF
+Passage15Status: OFF
+Passage16Status: OFF
+--------------------
+Ele_Power: 3
+Ele_Vol: 3
+Ele_Ele: 
+Ele_Resis: 
+Power_Status: OFF
+Power_Vol: 
+Power_Ele: 
+LH_Status: OFF
+LH_Temp: 
+Passage1Status: OFF
+Passage2Status: OFF
+Passage3Status: OFF
+Passage4Status: OFF
+Passage5Status: OFF
+Passage6Status: OFF
+Passage7Status: OFF
+Passage8Status: OFF
+Passage9Status: OFF
+Passage10Status: OFF
+Passage11Status: OFF
+Passage12Status: OFF
+Passage13Status: OFF
+Passage14Status: OFF
+Passage15Status: OFF
+Passage16Status: OFF
+--------------------
+Ele_Power: 2
+Ele_Vol: 2
+Ele_Ele: 
+Ele_Resis: 
+Power_Status: OFF
+Power_Vol: 
+Power_Ele: 
+LH_Status: OFF
+LH_Temp: 
+Passage1Status: OFF
+Passage2Status: OFF
+Passage3Status: OFF
+Passage4Status: OFF
+Passage5Status: OFF
+Passage6Status: OFF
+Passage7Status: OFF
+Passage8Status: OFF
+Passage9Status: OFF
+Passage10Status: OFF
+Passage11Status: OFF
+Passage12Status: OFF
+Passage13Status: OFF
+Passage14Status: OFF
+Passage15Status: OFF
+Passage16Status: OFF
+--------------------
+Ele_Power: 2
+Ele_Vol: 2
+Ele_Ele: 
+Ele_Resis: 
+Power_Status: OFF
+Power_Vol: 
+Power_Ele: 
+LH_Status: OFF
+LH_Temp: 
+Passage1Status: OFF
+Passage2Status: OFF
+Passage3Status: OFF
+Passage4Status: OFF
+Passage5Status: OFF
+Passage6Status: OFF
+Passage7Status: OFF
+Passage8Status: OFF
+Passage9Status: OFF
+Passage10Status: OFF
+Passage11Status: OFF
+Passage12Status: OFF
+Passage13Status: OFF
+Passage14Status: OFF
+Passage15Status: OFF
+Passage16Status: OFF
+--------------------
+Ele_Power: 
+Ele_Vol: 
+Ele_Ele: 
+Ele_Resis: 
+Power_Status: ON
+Power_Vol: 
+Power_Ele: 
+LH_Status: OFF
+LH_Temp: 
+Passage1Status: OFF
+Passage2Status: OFF
+Passage3Status: OFF
+Passage4Status: OFF
+Passage5Status: OFF
+Passage6Status: OFF
+Passage7Status: OFF
+Passage8Status: OFF
+Passage9Status: OFF
+Passage10Status: OFF
+Passage11Status: OFF
+Passage12Status: OFF
+Passage13Status: OFF
+Passage14Status: OFF
+Passage15Status: OFF
+Passage16Status: OFF
+--------------------
+Ele_Power: 1
+Ele_Vol: 2
+Ele_Ele: 3
+Ele_Resis: 4
+Power_Status: ON
+Power_Vol: 5
+Power_Ele: 6
+LH_Status: ON
+LH_Temp: 7
+Passage1Status: ON
+Passage2Status: ON
+Passage3Status: ON
+Passage4Status: ON
+Passage5Status: ON
+Passage6Status: ON
+Passage7Status: OFF
+Passage8Status: OFF
+Passage9Status: OFF
+Passage10Status: OFF
+Passage11Status: OFF
+Passage12Status: ON
+Passage13Status: ON
+Passage14Status: OFF
+Passage15Status: OFF
+Passage16Status: OFF
+--------------------

@@ -1,0 +1,101 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\C#_project\\BFS_2\\BFS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\C#_project\\BFS_2\\BFS\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|e:\\c#_project\\bfs_2\\bfs\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\C#_project\\BFS_2\\BFS\\lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|e:\\c#_project\\bfs_2\\bfs\\ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|e:\\c#_project\\bfs_2\\bfs\\power_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:power_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Power_info.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\Power_info.cs",
+              "RelativeDocumentMoniker": "Power_info.cs",
+              "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\Power_info.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "Power_info.cs [\u8BBE\u8BA1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-31T02:09:09.421Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Ele_info.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\Ele_info.cs",
+              "RelativeDocumentMoniker": "Ele_info.cs",
+              "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\Ele_info.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "Ele_info.cs [\u8BBE\u8BA1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-31T02:00:35.182Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "lh_room.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\lh_room.cs",
+              "RelativeDocumentMoniker": "lh_room.cs",
+              "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\lh_room.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "lh_room.cs [\u8BBE\u8BA1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T03:19:13.217Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\Form1.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "Form1.cs [\u8BBE\u8BA1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T03:19:08.303Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AQIAAFwAAAAAAAAAAAAQwDIAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T07:33:58.695Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
