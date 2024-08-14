@@ -192,7 +192,7 @@
             this.Set_Vol_btn2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Set_Vol_btn2.Location = new System.Drawing.Point(582, 94);
             this.Set_Vol_btn2.Name = "Set_Vol_btn2";
-            this.Set_Vol_btn2.Size = new System.Drawing.Size(56, 34);
+            this.Set_Vol_btn2.Size = new System.Drawing.Size(70, 30);
             this.Set_Vol_btn2.TabIndex = 31;
             this.Set_Vol_btn2.Text = "设置";
             this.Set_Vol_btn2.UseVisualStyleBackColor = true;
@@ -204,7 +204,7 @@
             this.Re_Vol_btn2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Re_Vol_btn2.Location = new System.Drawing.Point(582, 23);
             this.Re_Vol_btn2.Name = "Re_Vol_btn2";
-            this.Re_Vol_btn2.Size = new System.Drawing.Size(56, 33);
+            this.Re_Vol_btn2.Size = new System.Drawing.Size(70, 29);
             this.Re_Vol_btn2.TabIndex = 30;
             this.Re_Vol_btn2.Text = "读取";
             this.Re_Vol_btn2.UseVisualStyleBackColor = true;
@@ -303,9 +303,9 @@
             // 
             this.ON_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ON_btn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ON_btn.Location = new System.Drawing.Point(582, 168);
+            this.ON_btn.Location = new System.Drawing.Point(582, 166);
             this.ON_btn.Name = "ON_btn";
-            this.ON_btn.Size = new System.Drawing.Size(56, 35);
+            this.ON_btn.Size = new System.Drawing.Size(70, 30);
             this.ON_btn.TabIndex = 38;
             this.ON_btn.Text = "启动";
             this.ON_btn.UseVisualStyleBackColor = true;

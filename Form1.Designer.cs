@@ -145,7 +145,6 @@
             // 
             // lh_Page
             // 
-            this.lh_Page.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lh_Page.BackgroundImage")));
             this.lh_Page.Controls.Add(this.groupBox2);
             this.lh_Page.Controls.Add(this.progressBar_time);
             this.lh_Page.Controls.Add(this.count_down);
@@ -1055,7 +1054,7 @@
             this.ele_Page.Location = new System.Drawing.Point(4, 26);
             this.ele_Page.Name = "ele_Page";
             this.ele_Page.Padding = new System.Windows.Forms.Padding(3);
-            this.ele_Page.Size = new System.Drawing.Size(943, 663);
+            this.ele_Page.Size = new System.Drawing.Size(876, 628);
             this.ele_Page.TabIndex = 2;
             this.ele_Page.Text = "电子负载";
             this.ele_Page.UseVisualStyleBackColor = true;
@@ -1066,7 +1065,7 @@
             this.power_Page.Location = new System.Drawing.Point(4, 26);
             this.power_Page.Name = "power_Page";
             this.power_Page.Padding = new System.Windows.Forms.Padding(3);
-            this.power_Page.Size = new System.Drawing.Size(943, 663);
+            this.power_Page.Size = new System.Drawing.Size(876, 628);
             this.power_Page.TabIndex = 3;
             this.power_Page.Text = "万瑞达电源";
             this.power_Page.UseVisualStyleBackColor = true;
@@ -1077,7 +1076,7 @@
             this.room_Page.Location = new System.Drawing.Point(4, 26);
             this.room_Page.Name = "room_Page";
             this.room_Page.Padding = new System.Windows.Forms.Padding(3);
-            this.room_Page.Size = new System.Drawing.Size(943, 663);
+            this.room_Page.Size = new System.Drawing.Size(876, 628);
             this.room_Page.TabIndex = 4;
             this.room_Page.Text = "老化柜";
             this.room_Page.UseVisualStyleBackColor = true;
@@ -1088,7 +1087,7 @@
             this.relay_Page.Location = new System.Drawing.Point(4, 26);
             this.relay_Page.Name = "relay_Page";
             this.relay_Page.Padding = new System.Windows.Forms.Padding(3);
-            this.relay_Page.Size = new System.Drawing.Size(943, 663);
+            this.relay_Page.Size = new System.Drawing.Size(876, 628);
             this.relay_Page.TabIndex = 5;
             this.relay_Page.Text = "继电器";
             this.relay_Page.UseVisualStyleBackColor = true;
@@ -1097,6 +1096,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(884, 658);
             this.Controls.Add(this.info_Control);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

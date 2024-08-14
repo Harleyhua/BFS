@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Control = System.Windows.Forms.Control;
@@ -24,7 +25,7 @@ namespace BFS
 
             // 设置窗体启动位置为屏幕中心
             this.StartPosition = FormStartPosition.CenterScreen;
-            
+
             //倒计时
             countdownTimer = new Timer();
             countdownTimer.Interval = 1000; // 设置计时器的间隔为1秒
@@ -36,7 +37,6 @@ namespace BFS
             this.Elec_label4.Text = Global.sysini.Get_Value("Real_Pow_Ele");
             this.Temp_label2.Text = Global.sysini.Get_Value("Real_Temp");
             flash_form();
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -48,13 +48,13 @@ namespace BFS
             //room.Dock = DockStyle.Fill;
             //OpenFrom(room, this.room_Page);
 
-            //Ele_connection();
-            //Power_connection();
-            //lh_connection();
-            //Relay_connection();
-
+            Ele_connection();
+            Power_connection();
+            lh_connection();
+            Relay_connection();
         }
 
+        //****************** 页面刷新 ******************//
         private void flash_form()
         {
             //电子负载
@@ -283,6 +283,7 @@ namespace BFS
                     //    OpenFrom(info, this.info_Page);
                     //}
                     flash_form();
+                    real_info();
                     break;
                 case 1:
                     if (ele == null)
@@ -319,6 +320,7 @@ namespace BFS
             }
         }
 
+        //**************************** 初始化连接 ****************************//
         //电子负载
         private void Ele_connection()
         {
@@ -343,7 +345,6 @@ namespace BFS
             {
                 Global.G_Power.Disconnect_Type();
                 receivingBox.Items.Add("Connect");
-
             }
             else
             {
@@ -388,6 +389,7 @@ namespace BFS
             }
         }
 
+        //************************ 倒计时设置 ********************//
         private void Set_Time_btn_Click(object sender, EventArgs e)
         {
             Time time = new Time();
@@ -487,6 +489,7 @@ namespace BFS
             count_down.Text = time.ToString(@"hh\:mm\:ss");
         }
 
+        //**************************** 参数设置 ************************//
         //参数设置
         private void Argument_btn_Click(object sender, EventArgs e)
         {
@@ -494,6 +497,7 @@ namespace BFS
             con.Show(this);
         }
 
+        //************************* 开始老化 **************************//
         //开始老化
         private void beging_lh_btn_Click(object sender, EventArgs e)
         {
@@ -503,33 +507,6 @@ namespace BFS
                 MessageBox.Show("请先设置时间！");
                 return;
             }
-
-            //bool result = Ele_lh();
-            //if (result)
-            //{
-            //    bool result2 = Power_lh();
-            //    if (result2)
-            //    {
-            //            bool result4 = Relay_lh();
-            //            if (result4)
-            //            {
-            //                MessageBox.Show("启动老化成功！");
-            //                StartCountdown(countdownTime);
-            //            }
-            //            else
-            //            {
-            //                MessageBox.Show("继电器老化设置失败！");
-            //            }
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("万瑞达老化设置失败！");
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("电子负载老化失败！");
-            //}
 
             bool result = Ele_lh();
             if (result)
@@ -568,6 +545,8 @@ namespace BFS
             //StartCountdown(countdownTime);
         }
 
+        //*************************** 老化参数 ***********************//
+        //电子负载老化
         private bool Ele_lh()
         {
             bool Ele_success = false;
@@ -610,6 +589,7 @@ namespace BFS
             return Ele_success;
         }
 
+        //万瑞达电源老化
         private bool Power_lh()
         {
             bool Power_success = false;
@@ -617,7 +597,7 @@ namespace BFS
             {
                 try
                 {
-                    //万瑞达电源状态
+                    //万瑞达电源状态（作用是什么）
                     //if(status_label1.Text == "ON")
                     //{
                     //    string command1 = $"01050085FF009DD3";
@@ -626,10 +606,10 @@ namespace BFS
                     //    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command1);
                     //}else if(status_label2.Text == "OFF")
                     //{
-                    //    string command1 = $"010500850000DC23";
-                    //    command1 = command1.Replace(" ", "");
+                    //    string command2 = $"010500850000DC23";
+                    //    command2 = command2.Replace(" ", "");
                     //    Global.G_Power.sendData_TY(command1);
-                    //    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command1);
+                    //    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command2);
                     //}
                     //电压
                     int Vol_value = int.Parse(vol_label_3.Text);
@@ -687,6 +667,7 @@ namespace BFS
             return Power_success;
         }
 
+        //老化柜老化
         private bool Room_lh()
         {
             bool Room_success = false;
@@ -711,9 +692,10 @@ namespace BFS
                     //}
 
                     string decimalValueString = temp_label_2.Text.Trim();
-
                     if (decimal.TryParse(decimalValueString, out decimal decimalValue))
                     {
+                        if (decimalValue <= 40)
+                        {
                             // 将带有两位小数的十进制数乘以100转换为整数  
                             decimal multipliedValue = decimalValue * 100;
                             long integerValue = Convert.ToInt64(multipliedValue);
@@ -721,6 +703,40 @@ namespace BFS
                             // 将整数转换为十六进制字符串  
                             string hexString = Convert.ToString(integerValue, 16).ToUpperInvariant();
 
+                            // 构造指令，确保使用正确的十六进制值
+                            string command = $"000000000006000600000{hexString}";
+
+                            Global.G_lh.sendData_TY(command);
+                            receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+
+                            //将大写转小写
+                            string command2 = $"000000000006000600000{Global.G_lh.ConvertToLowerCaseHex(hexString)}";
+
+                            string responseText = string.Empty;
+                            byte[] responseBytes = new byte[1024 * 5]; // 根据需要设置合适的大小
+                            bool success = Global.G_lh.getResult_TY(ref responseText, ref responseBytes);
+                            receivingBox.Items.Add($"{DateTime.Now} 接收命令: " + responseText);
+                            if (success)
+                            {
+                                if (responseText == command2)
+                                {
+                                    Console.WriteLine("设置成功！");
+                                    Room_success = true;
+                                }
+                            }
+                            else
+                            {
+                                //输入的不是有效的十进制数  
+                                Console.WriteLine("输入错误，请重新输入！");
+                            }
+                        }
+                        else if (decimalValue > 40)
+                        {
+                            // 将带有两位小数的十进制数乘以100转换为整数  
+                            decimal multipliedValue = decimalValue * 100;
+                            long integerValue = Convert.ToInt64(multipliedValue);
+                            // 将整数转换为十六进制字符串  
+                            string hexString = Convert.ToString(integerValue, 16).ToUpperInvariant();
                             // 构造指令，确保使用正确的十六进制值
                             string command = $"00000000000600060000{hexString}";
 
@@ -739,6 +755,7 @@ namespace BFS
                                 if (responseText == command2)
                                 {
                                     Console.WriteLine("设置成功！");
+                                    Room_success = true;
                                 }
                             }
                             else
@@ -746,8 +763,10 @@ namespace BFS
                                 //输入的不是有效的十进制数  
                                 Console.WriteLine("输入错误，请重新输入！");
                             }
-                            Room_success = true;
+                        }
+                        //Room_success = true;
                     }
+
                 }
                 catch (FormatException ex)
                 {
@@ -761,6 +780,7 @@ namespace BFS
             return Room_success;
         }
 
+        //继电器老化
         private bool Relay_lh()
         {
             bool Relay_success = false;
@@ -1219,14 +1239,14 @@ namespace BFS
             return Relay_success;
         }
 
-        //老化暂停
+        //************************* 老化暂停 *********************//
         private void Paused_btn_Click(object sender, EventArgs e)
         {
             PauseCountdown();
             MessageBox.Show("已停止老化！");
         }
 
-        //设备重置
+        //************************ 设备重置 ******************//
         private void Reset_device()
         {
             if (Global.G_ELe.getEle_connected())
@@ -1259,13 +1279,13 @@ namespace BFS
                     //万瑞达电源状态
                     //if(status_label1.Text == "ON")
                     //{
-                    //    string command1 = $"01050085FF009DD3";
+                    //    string command1 = $"后续补充";
                     //    command1 = command1.Replace(" ", "");
                     //    Global.G_Power.sendData_TY(command1);
                     //    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command1);
                     //}else if(status_label2.Text == "OFF")
                     //{
-                    //    string command1 = $"010500850000DC23";
+                    //    string command1 = $"后续补充";
                     //    command1 = command1.Replace(" ", "");
                     //    Global.G_Power.sendData_TY(command1);
                     //    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command1);
@@ -1296,9 +1316,7 @@ namespace BFS
             {
                 MessageBox.Show("网络串口未打开，请先连接串口！");
             }
-
             Reset_Relay();
-
         }
         public static int HexStringToDecimal(string hexString)
         {
@@ -1319,7 +1337,7 @@ namespace BFS
             return decimalValue;
         }
 
-        //继电器重置
+        //********************* 继电器重置 ************************//
         private void Reset_Relay()
         {
             if (Global.G_Rel.getRelay_connected())
@@ -1505,6 +1523,7 @@ namespace BFS
             }
         }
 
+        //**************************** 页面实时数据 ***************************//
         private void real_info()
         {
             if (Global.G_lh.getlh_connected())

@@ -296,7 +296,7 @@ namespace BFS
                             receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
 
                             //将大写转小写
-                            string command2 = $"00000000000600060000{Global.G_lh.ConvertToLowerCaseHex(hexString)}";
+                            string command2 = $"000000000006000600000{Global.G_lh.ConvertToLowerCaseHex(hexString)}";
 
                             string responseText = string.Empty;
                             byte[] responseBytes = new byte[1024 * 5]; // 根据需要设置合适的大小
@@ -345,7 +345,7 @@ namespace BFS
                             else
                             {
                                 //输入的不是有效的十进制数  
-                                MessageBox.Show("输入错误，请重新输入！");
+                                MessageBox.Show("设置失败！");
                             }
                         }
                     }
