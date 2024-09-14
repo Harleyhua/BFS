@@ -50,7 +50,7 @@ namespace BFS
 
             Ele_connection();
             Power_connection();
-            lh_connection();
+            //lh_connection();
             Relay_connection();
         }
 
@@ -283,7 +283,7 @@ namespace BFS
                     //    OpenFrom(info, this.info_Page);
                     //}
                     flash_form();
-                    real_info();
+                    //real_info();
                     break;
                 case 1:
                     if (ele == null)

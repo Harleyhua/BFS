@@ -180,17 +180,17 @@
             // 
             // Voltage_box2
             // 
-            this.Voltage_box2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Voltage_box2.Location = new System.Drawing.Point(469, 54);
+            this.Voltage_box2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Voltage_box2.Location = new System.Drawing.Point(469, 66);
             this.Voltage_box2.Name = "Voltage_box2";
-            this.Voltage_box2.Size = new System.Drawing.Size(40, 26);
+            this.Voltage_box2.Size = new System.Drawing.Size(40, 29);
             this.Voltage_box2.TabIndex = 32;
             // 
             // Set_Vol_btn2
             // 
             this.Set_Vol_btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Set_Vol_btn2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Set_Vol_btn2.Location = new System.Drawing.Point(582, 94);
+            this.Set_Vol_btn2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Set_Vol_btn2.Location = new System.Drawing.Point(582, 103);
             this.Set_Vol_btn2.Name = "Set_Vol_btn2";
             this.Set_Vol_btn2.Size = new System.Drawing.Size(70, 30);
             this.Set_Vol_btn2.TabIndex = 31;
@@ -201,7 +201,7 @@
             // Re_Vol_btn2
             // 
             this.Re_Vol_btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Re_Vol_btn2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Re_Vol_btn2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Re_Vol_btn2.Location = new System.Drawing.Point(582, 23);
             this.Re_Vol_btn2.Name = "Re_Vol_btn2";
             this.Re_Vol_btn2.Size = new System.Drawing.Size(70, 29);
@@ -213,97 +213,97 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(512, 60);
+            this.label7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.Location = new System.Drawing.Point(512, 72);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(18, 20);
+            this.label7.Size = new System.Drawing.Size(21, 21);
             this.label7.TabIndex = 29;
             this.label7.Text = "V";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label6.Location = new System.Drawing.Point(512, 23);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(18, 20);
+            this.label6.Size = new System.Drawing.Size(21, 21);
             this.label6.TabIndex = 28;
             this.label6.Text = "V";
             // 
             // Vol_label2
             // 
             this.Vol_label2.AutoSize = true;
-            this.Vol_label2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Vol_label2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Vol_label2.Location = new System.Drawing.Point(466, 23);
             this.Vol_label2.Name = "Vol_label2";
-            this.Vol_label2.Size = new System.Drawing.Size(44, 20);
+            this.Vol_label2.Size = new System.Drawing.Size(50, 21);
             this.Vol_label2.TabIndex = 27;
             this.Vol_label2.Text = "00.00";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label4.Location = new System.Drawing.Point(415, 23);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 20);
+            this.label4.Size = new System.Drawing.Size(46, 21);
             this.label4.TabIndex = 26;
             this.label4.Text = "电压:";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // Electric2
             // 
-            this.Electric2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Electric2.Location = new System.Drawing.Point(469, 168);
+            this.Electric2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Electric2.Location = new System.Drawing.Point(468, 184);
             this.Electric2.Name = "Electric2";
-            this.Electric2.Size = new System.Drawing.Size(40, 26);
+            this.Electric2.Size = new System.Drawing.Size(40, 29);
             this.Electric2.TabIndex = 37;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(512, 174);
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Location = new System.Drawing.Point(511, 190);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(18, 20);
+            this.label5.Size = new System.Drawing.Size(21, 21);
             this.label5.TabIndex = 36;
             this.label5.Text = "V";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(512, 137);
+            this.label8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label8.Location = new System.Drawing.Point(511, 144);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(18, 20);
+            this.label8.Size = new System.Drawing.Size(21, 21);
             this.label8.TabIndex = 35;
             this.label8.Text = "V";
             // 
             // Ele_label2
             // 
             this.Ele_label2.AutoSize = true;
-            this.Ele_label2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Ele_label2.Location = new System.Drawing.Point(466, 137);
+            this.Ele_label2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Ele_label2.Location = new System.Drawing.Point(465, 144);
             this.Ele_label2.Name = "Ele_label2";
-            this.Ele_label2.Size = new System.Drawing.Size(44, 20);
+            this.Ele_label2.Size = new System.Drawing.Size(50, 21);
             this.Ele_label2.TabIndex = 34;
             this.Ele_label2.Text = "00.00";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(415, 137);
+            this.label10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label10.Location = new System.Drawing.Point(414, 144);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(40, 20);
+            this.label10.Size = new System.Drawing.Size(46, 21);
             this.label10.TabIndex = 33;
             this.label10.Text = "电流:";
             // 
             // ON_btn
             // 
             this.ON_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ON_btn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ON_btn.Location = new System.Drawing.Point(582, 166);
+            this.ON_btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ON_btn.Location = new System.Drawing.Point(582, 181);
             this.ON_btn.Name = "ON_btn";
             this.ON_btn.Size = new System.Drawing.Size(70, 30);
             this.ON_btn.TabIndex = 38;

@@ -133,7 +133,7 @@
             this.hostPort.FormattingEnabled = true;
             this.hostPort.Items.AddRange(new object[] {
             "17072"});
-            this.hostPort.Location = new System.Drawing.Point(112, 138);
+            this.hostPort.Location = new System.Drawing.Point(105, 136);
             this.hostPort.Name = "hostPort";
             this.hostPort.Size = new System.Drawing.Size(121, 28);
             this.hostPort.TabIndex = 13;
@@ -144,7 +144,7 @@
             this.HostAdress.FormattingEnabled = true;
             this.HostAdress.Items.AddRange(new object[] {
             "10.10.106.241"});
-            this.HostAdress.Location = new System.Drawing.Point(112, 74);
+            this.HostAdress.Location = new System.Drawing.Point(105, 72);
             this.HostAdress.Name = "HostAdress";
             this.HostAdress.Size = new System.Drawing.Size(121, 28);
             this.HostAdress.TabIndex = 12;
@@ -156,7 +156,7 @@
             this.Connect_Way.Items.AddRange(new object[] {
             "TCP网络",
             "串口调试"});
-            this.Connect_Way.Location = new System.Drawing.Point(112, 19);
+            this.Connect_Way.Location = new System.Drawing.Point(105, 17);
             this.Connect_Way.Name = "Connect_Way";
             this.Connect_Way.Size = new System.Drawing.Size(121, 28);
             this.Connect_Way.TabIndex = 11;
@@ -188,16 +188,16 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label4.Location = new System.Drawing.Point(455, 21);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 20);
+            this.label4.Size = new System.Drawing.Size(46, 21);
             this.label4.TabIndex = 19;
             this.label4.Text = "通道:";
             // 
             // comboBox1
             // 
-            this.comboBox1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.comboBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "通道1",
@@ -218,35 +218,35 @@
             "通道16"});
             this.comboBox1.Location = new System.Drawing.Point(517, 15);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 28);
+            this.comboBox1.Size = new System.Drawing.Size(121, 29);
             this.comboBox1.TabIndex = 18;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label5.Location = new System.Drawing.Point(455, 108);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 20);
+            this.label5.Size = new System.Drawing.Size(46, 21);
             this.label5.TabIndex = 21;
             this.label5.Text = "状态:";
             // 
             // comboBox2
             // 
-            this.comboBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.comboBox2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "吸合",
             "分离"});
             this.comboBox2.Location = new System.Drawing.Point(517, 102);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 28);
+            this.comboBox2.Size = new System.Drawing.Size(121, 29);
             this.comboBox2.TabIndex = 20;
             // 
             // OK_btn1
             // 
             this.OK_btn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OK_btn1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.OK_btn1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.OK_btn1.Location = new System.Drawing.Point(457, 214);
             this.OK_btn1.Name = "OK_btn1";
             this.OK_btn1.Size = new System.Drawing.Size(75, 31);
@@ -258,7 +258,7 @@
             // check_btn1
             // 
             this.check_btn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.check_btn1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.check_btn1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.check_btn1.Location = new System.Drawing.Point(615, 214);
             this.check_btn1.Name = "check_btn1";
             this.check_btn1.Size = new System.Drawing.Size(75, 31);

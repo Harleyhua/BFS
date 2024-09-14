@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.InputBox = new System.Windows.Forms.TextBox();
             this.Sent = new System.Windows.Forms.Button();
@@ -51,6 +52,7 @@
             this.right_open = new System.Windows.Forms.Button();
             this.left_close = new System.Windows.Forms.Button();
             this.right_close = new System.Windows.Forms.Button();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -189,19 +191,19 @@
             // 
             // temp_Box
             // 
-            this.temp_Box.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.temp_Box.Location = new System.Drawing.Point(465, 67);
+            this.temp_Box.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.temp_Box.Location = new System.Drawing.Point(466, 71);
             this.temp_Box.Name = "temp_Box";
-            this.temp_Box.Size = new System.Drawing.Size(40, 26);
+            this.temp_Box.Size = new System.Drawing.Size(40, 29);
             this.temp_Box.TabIndex = 39;
             // 
             // Set_temp_btn
             // 
             this.Set_temp_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Set_temp_btn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Set_temp_btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Set_temp_btn.Location = new System.Drawing.Point(581, 67);
             this.Set_temp_btn.Name = "Set_temp_btn";
-            this.Set_temp_btn.Size = new System.Drawing.Size(56, 27);
+            this.Set_temp_btn.Size = new System.Drawing.Size(68, 32);
             this.Set_temp_btn.TabIndex = 38;
             this.Set_temp_btn.Text = "设置";
             this.Set_temp_btn.UseVisualStyleBackColor = true;
@@ -210,10 +212,10 @@
             // Re_temp_btn
             // 
             this.Re_temp_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Re_temp_btn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Re_temp_btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Re_temp_btn.Location = new System.Drawing.Point(581, 12);
             this.Re_temp_btn.Name = "Re_temp_btn";
-            this.Re_temp_btn.Size = new System.Drawing.Size(56, 27);
+            this.Re_temp_btn.Size = new System.Drawing.Size(68, 30);
             this.Re_temp_btn.TabIndex = 37;
             this.Re_temp_btn.Text = "读取";
             this.Re_temp_btn.UseVisualStyleBackColor = true;
@@ -222,59 +224,60 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(509, 74);
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Location = new System.Drawing.Point(510, 78);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(23, 20);
+            this.label5.Size = new System.Drawing.Size(26, 21);
             this.label5.TabIndex = 36;
             this.label5.Text = "℃";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label8.Location = new System.Drawing.Point(509, 19);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(23, 20);
+            this.label8.Size = new System.Drawing.Size(26, 21);
             this.label8.TabIndex = 35;
             this.label8.Text = "℃";
             // 
             // Temp_label
             // 
             this.Temp_label.AutoSize = true;
-            this.Temp_label.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Temp_label.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Temp_label.Location = new System.Drawing.Point(462, 19);
             this.Temp_label.Name = "Temp_label";
-            this.Temp_label.Size = new System.Drawing.Size(44, 20);
+            this.Temp_label.Size = new System.Drawing.Size(50, 21);
             this.Temp_label.TabIndex = 34;
             this.Temp_label.Text = "00.00";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label10.Location = new System.Drawing.Point(396, 19);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(40, 20);
+            this.label10.Size = new System.Drawing.Size(46, 21);
             this.label10.TabIndex = 33;
             this.label10.Text = "温度:";
             // 
             // left_open
             // 
             this.left_open.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.left_open.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.left_open.Location = new System.Drawing.Point(400, 174);
+            this.left_open.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.left_open.Location = new System.Drawing.Point(422, 175);
             this.left_open.Name = "left_open";
             this.left_open.Size = new System.Drawing.Size(75, 31);
             this.left_open.TabIndex = 40;
-            this.left_open.Text = "左门开";
+            this.left_open.Text = "开门";
             this.left_open.UseVisualStyleBackColor = true;
+            this.left_open.Click += new System.EventHandler(this.left_open_Click);
             // 
             // right_open
             // 
             this.right_open.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.right_open.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.right_open.Location = new System.Drawing.Point(610, 174);
+            this.right_open.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.right_open.Location = new System.Drawing.Point(422, 256);
             this.right_open.Name = "right_open";
             this.right_open.Size = new System.Drawing.Size(75, 31);
             this.right_open.TabIndex = 41;
@@ -284,19 +287,20 @@
             // left_close
             // 
             this.left_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.left_close.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.left_close.Location = new System.Drawing.Point(400, 281);
+            this.left_close.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.left_close.Location = new System.Drawing.Point(616, 175);
             this.left_close.Name = "left_close";
             this.left_close.Size = new System.Drawing.Size(75, 31);
             this.left_close.TabIndex = 42;
-            this.left_close.Text = "左门关";
+            this.left_close.Text = "关门";
             this.left_close.UseVisualStyleBackColor = true;
+            this.left_close.Click += new System.EventHandler(this.left_close_Click);
             // 
             // right_close
             // 
             this.right_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.right_close.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.right_close.Location = new System.Drawing.Point(610, 281);
+            this.right_close.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.right_close.Location = new System.Drawing.Point(616, 256);
             this.right_close.Name = "right_close";
             this.right_close.Size = new System.Drawing.Size(75, 31);
             this.right_close.TabIndex = 43;
@@ -329,7 +333,7 @@
             this.Controls.Add(this.Connect_Way);
             this.Controls.Add(this.disconnect);
             this.Controls.Add(this.connect);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "lh_room";
             this.Text = "lh_room";
             this.Load += new System.EventHandler(this.lh_room_Load);
@@ -365,5 +369,6 @@
         private System.Windows.Forms.Button right_open;
         private System.Windows.Forms.Button left_close;
         private System.Windows.Forms.Button right_close;
+        private System.Windows.Forms.Timer timer;
     }
 }

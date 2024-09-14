@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace BFS
@@ -86,15 +87,6 @@ namespace BFS
                     try
                     {
                         Global.G_lh.connect_Type();
-                        //client.Connect(HostAdress.Text, int.Parse(hostPort.Text));
-                        //networkStream = client.GetStream();
-                        ////if (networkStream.CanRead)
-                        ////{
-                        ////    BeginReceive();
-                        ////}
-                        //connect.Enabled = false;
-                        //disconnect.Enabled = true;
-                        //Print("连接成功");
 
                         //触发保存地址(配置文件)
                         Global.sysini.Updata_Value("Room_IP", this.HostAdress.Text);
@@ -274,13 +266,13 @@ namespace BFS
         {
             if (Global.G_lh.getlh_connected())
             {
-                    try
-                    {
-                        string decimalValueString = temp_Box.Text.Trim();
+                try
+                {
+                    string decimalValueString = temp_Box.Text.Trim();
 
                     if (decimal.TryParse(decimalValueString, out decimal decimalValue))
                     {
-                        if(decimalValue <= 40)
+                        if (decimalValue <= 40)
                         {
                             // 将带有两位小数的十进制数乘以100转换为整数  
                             decimal multipliedValue = decimalValue * 100;
@@ -315,7 +307,7 @@ namespace BFS
                                 MessageBox.Show("输入错误，请重新输入！");
                             }
                         }
-                        else if(decimalValue > 40)
+                        else if (decimalValue > 40)
                         {
                             // 将带有两位小数的十进制数乘以100转换为整数  
                             decimal multipliedValue = decimalValue * 100;
@@ -350,19 +342,124 @@ namespace BFS
                         }
                     }
 
-                    }
-                    catch (FormatException ex)
-                    {
-                        MessageBox.Show("输入的值不是有效的数值: " + ex.Message);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show("输入的值不是有效的数值: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("发送指令失败: " + ex.Message);
+                }
             }
             else
             {
                 MessageBox.Show("网络串口未连接或无法写入，请检查连接状态！");
+            }
+        }
+
+        private void left_open_Click(object sender, EventArgs e)
+        {
+            if (Global.G_lh.getlh_connected())
+            {
+                try
+                {
+                    string command = $"00000000000600050008FF00";
+                    Global.G_lh.sendData_TY(command);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("开门指令发送失败: " + ex.Message);
+                }
+
+                string responseText = string.Empty;
+                byte[] responseBytes = new byte[1024 * 5]; 
+                bool success = Global.G_lh.getResult_TY(ref responseText, ref responseBytes);
+                if (success)
+                {
+                    receivingBox.Items.Add($"{DateTime.Now} 接收命令: " + responseText);
+                    MessageBox.Show("老化柜门已打开！");
+
+                    //定时器定时清除
+                    System.Timers.Timer timer_open = new System.Timers.Timer();
+                    timer_open.Enabled = true;
+                    timer_open.Interval = 180000;
+                    timer_open.Start();
+                    timer_open.Elapsed += new System.Timers.ElapsedEventHandler(clear_open);
+                }
+            }
+            else
+            {
+                MessageBox.Show("网络串口未打开，请先连接串口！");
+
+            }
+        }
+
+        private void clear_open(object source, ElapsedEventArgs e)
+        {
+            try
+            {
+                string command = $"000000000006000500080000";
+                Global.G_lh.sendData_TY(command);
+                receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("清除开门指令失败: " + ex.Message);
+            }
+        }
+
+        private void left_close_Click(object sender, EventArgs e)
+        {
+            if (Global.G_lh.getlh_connected())
+            {
+                try
+                {
+                    string command = $"00000000000600050007FF00";
+                    Global.G_lh.sendData_TY(command);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("发送指令失败: " + ex.Message);
+                }
+
+                string responseText = string.Empty;
+                byte[] responseBytes = new byte[1024 * 5];
+                bool success = Global.G_lh.getResult_TY(ref responseText, ref responseBytes);
+                if (success)
+                {
+                    receivingBox.Items.Add($"{DateTime.Now} 接收命令: " + responseText);
+
+                    MessageBox.Show("老化柜门已关闭！");
+
+                    //定时器定时清除
+                    System.Timers.Timer timer_close = new System.Timers.Timer();
+                    timer_close.Enabled = true;
+                    timer_close.Interval = 180000;
+                    timer_close.Start();
+                    timer_close.Elapsed += new System.Timers.ElapsedEventHandler(clear_close);
+                }
+            }
+            else
+            {
+                MessageBox.Show("网络串口未打开，请先连接串口！");
+
+            }
+        }
+
+        private void clear_close(object source, ElapsedEventArgs e)
+        {
+            try
+            {
+                string command = $"000000000006000500070000";
+                Global.G_lh.sendData_TY(command);
+                receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("清除关门指令失败: " + ex.Message);
             }
         }
     }

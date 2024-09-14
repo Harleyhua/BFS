@@ -3,18 +3,6 @@
   "WorkspaceRootPath": "E:\\C#_project\\BFS_2\\BFS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|e:\\c#_project\\bfs_2\\bfs\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\C#_project\\BFS_2\\BFS\\lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\C#_project\\BFS_2\\BFS\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\C#_project\\BFS_2\\BFS\\lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
@@ -23,12 +11,32 @@
       "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\C#_project\\BFS_2\\BFS\\ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|e:\\c#_project\\bfs_2\\bfs\\relay_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:relay_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|e:\\c#_project\\bfs_2\\bfs\\time.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:time.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\C#_project\\BFS_2\\BFS\\power_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:power_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\C#_project\\BFS_2\\BFS\\lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|e:\\c#_project\\bfs_2\\bfs\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\C#_project\\BFS_2\\BFS\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\C#_project\\BFS_2\\BFS\\ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\C#_project\\BFS_2\\BFS\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -46,40 +54,67 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
+              "Title": "Relay_info.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\Relay_info.cs",
+              "RelativeDocumentMoniker": "Relay_info.cs",
+              "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\Relay_info.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "Relay_info.cs [\u8BBE\u8BA1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-14T05:21:03.042Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Time.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\Time.cs",
+              "RelativeDocumentMoniker": "Time.cs",
+              "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\Time.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "Time.cs [\u8BBE\u8BA1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-14T05:19:33.793Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Power_info.cs [\u8BBE\u8BA1]",
               "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\Power_info.cs",
               "RelativeDocumentMoniker": "Power_info.cs",
               "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\Power_info.cs [\u8BBE\u8BA1]",
               "RelativeToolTip": "Power_info.cs [\u8BBE\u8BA1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-31T02:09:09.421Z"
+              "WhenOpened": "2024-07-31T02:09:09.421Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Ele_info.cs [\u8BBE\u8BA1]",
               "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\Ele_info.cs",
               "RelativeDocumentMoniker": "Ele_info.cs",
               "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\Ele_info.cs [\u8BBE\u8BA1]",
               "RelativeToolTip": "Ele_info.cs [\u8BBE\u8BA1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-31T02:00:35.182Z"
+              "WhenOpened": "2024-07-31T02:00:35.182Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "lh_room.cs [\u8BBE\u8BA1]",
               "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\lh_room.cs",
               "RelativeDocumentMoniker": "lh_room.cs",
               "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\lh_room.cs [\u8BBE\u8BA1]",
               "RelativeToolTip": "lh_room.cs [\u8BBE\u8BA1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-09T03:19:13.217Z"
+              "WhenOpened": "2024-07-09T03:19:13.217Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Form1.cs [\u8BBE\u8BA1]",
               "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
@@ -91,51 +126,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "Form1.cs",
               "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAAB8AAAAAAAAAAAAAwCsAAAAgAAAA",
+              "ViewState": "AQIAABYAAAAAAAAAAAAQwDEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-07T07:33:58.695Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "lh_room.cs",
               "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\lh_room.cs",
               "RelativeDocumentMoniker": "lh_room.cs",
               "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\lh_room.cs",
               "RelativeToolTip": "lh_room.cs",
-              "ViewState": "AQIAACkBAAAAAAAAAAAIwCoBAABFAAAA",
+              "ViewState": "AQIAAH8AAAAAAAAAAAAcwIoBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-14T02:06:41.597Z"
+              "WhenOpened": "2024-08-14T02:06:41.597Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Ele_info.cs",
               "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\Ele_info.cs",
               "RelativeDocumentMoniker": "Ele_info.cs",
               "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\Ele_info.cs",
               "RelativeToolTip": "Ele_info.cs",
-              "ViewState": "AQIAADABAAAAAAAAAAAMwDgBAAAjAAAA",
+              "ViewState": "AQIAAGEAAAAAAAAAAAAkwBAAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-14T02:37:30Z"
+              "WhenOpened": "2024-08-14T02:37:30Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "config.cs [\u8BBE\u8BA1]",
               "DocumentMoniker": "E:\\C#_project\\BFS_2\\BFS\\config.cs",
               "RelativeDocumentMoniker": "config.cs",
               "ToolTip": "E:\\C#_project\\BFS_2\\BFS\\config.cs [\u8BBE\u8BA1]",
               "RelativeToolTip": "config.cs [\u8BBE\u8BA1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-13T06:06:42.058Z"
+              "WhenOpened": "2024-08-13T06:06:42.058Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
             }
           ]
         }
