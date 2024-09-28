@@ -191,6 +191,10 @@
   <ItemGroup>
     <Content Include="icon.ico" />
     <Content Include="icon1.ico" />
+    <None Include="icon\open_2.png" />
+    <None Include="icon\open.png" />
+    <None Include="icon\close_2.png" />
+    <None Include="icon\close.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

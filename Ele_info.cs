@@ -202,6 +202,25 @@ namespace BFS
             MethodInvoker mi = () => receivingBox.Items.Add($"{DateTime.Now} {message}\r");
             this.Invoke(mi);
         }
+        private void Powcheck_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            if (checkBox.Checked)
+            {
+                CP_Mode();
+                Set_Pow_btn.Enabled = true;
+                Vol_check.Enabled = false;
+                Curr_check.Enabled = false;
+                Resis_check.Enabled = false;
+            }
+            else
+            {
+                Set_Pow_btn.Enabled = false;
+                Vol_check.Enabled = true;
+                Curr_check.Enabled = true;
+                Resis_check.Enabled = true;
+            }
+        }
         private void Sent_Click_1(object sender, EventArgs e)
         {
             if (!Global.G_ELe.getEle_connected())
@@ -293,6 +312,27 @@ namespace BFS
             }
         }
 
+        private void Volcheck_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            if (checkBox.Checked)
+            {
+                CV_Mode();
+                Set_Vol_btn.Enabled = true;
+                Pow_check.Enabled = false;
+                Curr_check.Enabled = false;
+                Resis_check.Enabled = false;
+            }
+            else
+            {
+                Set_Vol_btn.Enabled = false;
+                Pow_check.Enabled = true;
+                Curr_check.Enabled = true;
+                Resis_check.Enabled = true;
+
+            }
+        }
+
         private void Re_Vol_btn_Click(object sender, EventArgs e)
         {
             if (Global.G_ELe.getEle_connected())
@@ -360,6 +400,27 @@ namespace BFS
                 {
                     MessageBox.Show("请检查网络连接状态！");
                 }
+            }
+        }
+
+        private void Elecheck_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            if (checkBox.Checked)
+            {
+                CC_Mode();
+                Set_Ele_btn.Enabled = true;
+                Pow_check.Enabled = false;
+                Vol_check.Enabled = false;
+                Resis_check.Enabled = false;
+
+            }
+            else
+            {
+                Set_Ele_btn.Enabled = false;
+                Pow_check.Enabled = true;
+                Vol_check.Enabled = true;
+                Resis_check.Enabled = true;
             }
         }
 
@@ -432,6 +493,25 @@ namespace BFS
                 }
             }
         }
+        private void Resischeck_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            if (checkBox.Checked)
+            {
+                CR_Mode();
+                Set_Resis_btn.Enabled = true;
+                Pow_check.Enabled = false;
+                Curr_check.Enabled = false;
+                Vol_check.Enabled = false;
+            }
+            else
+            {
+                Set_Resis_btn.Enabled = false;
+                Pow_check.Enabled = true;
+                Curr_check.Enabled = true;
+                Vol_check.Enabled = true;
+            }
+        }
 
         private void Re_Resis_btn_Click(object sender, EventArgs e)
         {
@@ -440,7 +520,7 @@ namespace BFS
                 try
                 {
                     // 命令字符串，包含协议规定的结束符，如\r\n
-                    string command = "STATic:CR:LOW:LEVel?\r\n";
+                    string command = "STATic:CR:HIGH:LEVel?\r\n";
                     Global.G_ELe.sendData_TY(command);
                     receivingBox.Items.Add($"{DateTime.Now} 命令发送成功: " + command);
                 }
@@ -500,6 +580,146 @@ namespace BFS
                 {
                     MessageBox.Show("请检查网络连接状态！");
                 }
+            }
+        }
+
+        private void ON_btn_Click(object sender, EventArgs e)
+        {
+            if (Global.G_ELe.getEle_connected())
+            {
+                try
+                {
+                    string resistan = "INPut:STATe ON";
+                    string R_data = resistan + "\r\n";
+                    Global.G_ELe.sendData_TY(R_data);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
+                    MessageBox.Show("开机成功！");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("开机失败: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("请检查网络连接状态！");
+            }
+        }
+
+        private void OFF_btn_Click(object sender, EventArgs e)
+        {
+            if (Global.G_ELe.getEle_connected())
+            {
+                try
+                {
+                    string resistan = "INPut:STATe OFF";
+                    string R_data = resistan + "\r\n";
+                    Global.G_ELe.sendData_TY(R_data);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
+                    MessageBox.Show("关机成功！");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("关机失败: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("请检查网络连接状态！");
+            }
+        }
+
+        /******************模式设置*********************/
+        //恒功率模式
+        private void CP_Mode()
+        {
+            if (Global.G_ELe.getEle_connected())
+            {
+                try
+                {
+                    string resistan = "INPut:FUNCtion CP";
+                    string R_data = resistan + "\r\n";
+                    Global.G_ELe.sendData_TY(R_data);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
+                    //MessageBox.Show("恒功率模式设置成功！");
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show("恒功率模式设置失败: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("请检查网络连接状态！");
+            }
+        }
+
+        private void CV_Mode()
+        {
+            if (Global.G_ELe.getEle_connected())
+            {
+                try
+                {
+                    string resistan = "INPut:FUNCtion CV";
+                    string R_data = resistan + "\r\n";
+                    Global.G_ELe.sendData_TY(R_data);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
+                    //MessageBox.Show("恒功率模式设置成功！");
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show("恒功率模式设置失败: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("请检查网络连接状态！");
+            }
+        }
+
+        private void CC_Mode()
+        {
+            if (Global.G_ELe.getEle_connected())
+            {
+                try
+                {
+                    string resistan = "INPut:FUNCtion CC";
+                    string R_data = resistan + "\r\n";
+                    Global.G_ELe.sendData_TY(R_data);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
+                    //MessageBox.Show("恒功率模式设置成功！");
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show("恒功率模式设置失败: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("请检查网络连接状态！");
+            }
+        }
+
+        private void CR_Mode()
+        {
+            if (Global.G_ELe.getEle_connected())
+            {
+                try
+                {
+                    string resistan = "INPut:FUNCtion CR";
+                    string R_data = resistan + "\r\n";
+                    Global.G_ELe.sendData_TY(R_data);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
+                    //MessageBox.Show("恒功率模式设置成功！");
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show("恒功率模式设置失败: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("请检查网络连接状态！");
             }
         }
     }

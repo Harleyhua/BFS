@@ -40,7 +40,6 @@
             this.Connect_Way = new System.Windows.Forms.ComboBox();
             this.disconnect = new System.Windows.Forms.Button();
             this.connect = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.Power_label = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -53,21 +52,24 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.Ele_label = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.Voltage_box = new System.Windows.Forms.TextBox();
             this.Set_Vol_btn = new System.Windows.Forms.Button();
             this.Re_Vol_btn = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.Vol_label = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.Resis_Box = new System.Windows.Forms.TextBox();
             this.Set_Resis_btn = new System.Windows.Forms.Button();
             this.Re_Resis_btn = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.Resistance_label = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.Pow_check = new System.Windows.Forms.CheckBox();
+            this.Vol_check = new System.Windows.Forms.CheckBox();
+            this.Curr_check = new System.Windows.Forms.CheckBox();
+            this.Resis_check = new System.Windows.Forms.CheckBox();
+            this.ON_btn = new System.Windows.Forms.Button();
+            this.OFF_btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -204,16 +206,6 @@
             this.connect.UseVisualStyleBackColor = true;
             this.connect.Click += new System.EventHandler(this.connect_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(330, 23);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 21);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "恒功率:";
-            // 
             // Power_label
             // 
             this.Power_label.AutoSize = true;
@@ -258,6 +250,7 @@
             // 
             // Set_Pow_btn
             // 
+            this.Set_Pow_btn.Enabled = false;
             this.Set_Pow_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Set_Pow_btn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Set_Pow_btn.Location = new System.Drawing.Point(488, 76);
@@ -284,6 +277,7 @@
             // 
             // Set_Ele_btn
             // 
+            this.Set_Ele_btn.Enabled = false;
             this.Set_Ele_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Set_Ele_btn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Set_Ele_btn.Location = new System.Drawing.Point(488, 219);
@@ -336,16 +330,6 @@
             this.Ele_label.TabIndex = 27;
             this.Ele_label.Text = "00.00";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(330, 171);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(46, 21);
-            this.label10.TabIndex = 26;
-            this.label10.Text = "电流:";
-            // 
             // Voltage_box
             // 
             this.Voltage_box.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -356,6 +340,7 @@
             // 
             // Set_Vol_btn
             // 
+            this.Set_Vol_btn.Enabled = false;
             this.Set_Vol_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Set_Vol_btn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Set_Vol_btn.Location = new System.Drawing.Point(736, 78);
@@ -408,16 +393,6 @@
             this.Vol_label.TabIndex = 34;
             this.Vol_label.Text = "00.00";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.Location = new System.Drawing.Point(579, 22);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(46, 21);
-            this.label14.TabIndex = 33;
-            this.label14.Text = "电压:";
-            // 
             // Resis_Box
             // 
             this.Resis_Box.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -428,6 +403,7 @@
             // 
             // Set_Resis_btn
             // 
+            this.Set_Resis_btn.Enabled = false;
             this.Set_Resis_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Set_Resis_btn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Set_Resis_btn.Location = new System.Drawing.Point(736, 219);
@@ -480,15 +456,77 @@
             this.Resistance_label.TabIndex = 41;
             this.Resistance_label.Text = "00.00";
             // 
-            // label18
+            // Pow_check
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.Location = new System.Drawing.Point(578, 171);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(46, 21);
-            this.label18.TabIndex = 40;
-            this.label18.Text = "电阻:";
+            this.Pow_check.AutoSize = true;
+            this.Pow_check.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Pow_check.Location = new System.Drawing.Point(308, 22);
+            this.Pow_check.Name = "Pow_check";
+            this.Pow_check.Size = new System.Drawing.Size(93, 25);
+            this.Pow_check.TabIndex = 47;
+            this.Pow_check.Text = "恒功率：";
+            this.Pow_check.UseVisualStyleBackColor = true;
+            this.Pow_check.CheckedChanged += new System.EventHandler(this.Powcheck_CheckedChanged);
+            // 
+            // Vol_check
+            // 
+            this.Vol_check.AutoSize = true;
+            this.Vol_check.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Vol_check.Location = new System.Drawing.Point(571, 21);
+            this.Vol_check.Name = "Vol_check";
+            this.Vol_check.Size = new System.Drawing.Size(77, 25);
+            this.Vol_check.TabIndex = 48;
+            this.Vol_check.Text = "电压：";
+            this.Vol_check.UseVisualStyleBackColor = true;
+            this.Vol_check.CheckedChanged += new System.EventHandler(this.Volcheck_CheckedChanged);
+            // 
+            // Curr_check
+            // 
+            this.Curr_check.AutoSize = true;
+            this.Curr_check.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Curr_check.Location = new System.Drawing.Point(324, 170);
+            this.Curr_check.Name = "Curr_check";
+            this.Curr_check.Size = new System.Drawing.Size(77, 25);
+            this.Curr_check.TabIndex = 49;
+            this.Curr_check.Text = "电流：";
+            this.Curr_check.UseVisualStyleBackColor = true;
+            this.Curr_check.CheckedChanged += new System.EventHandler(this.Elecheck_CheckedChanged);
+            // 
+            // Resis_check
+            // 
+            this.Resis_check.AutoSize = true;
+            this.Resis_check.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Resis_check.Location = new System.Drawing.Point(571, 167);
+            this.Resis_check.Name = "Resis_check";
+            this.Resis_check.Size = new System.Drawing.Size(77, 25);
+            this.Resis_check.TabIndex = 50;
+            this.Resis_check.Text = "电阻：";
+            this.Resis_check.UseVisualStyleBackColor = true;
+            this.Resis_check.CheckedChanged += new System.EventHandler(this.Resischeck_CheckedChanged);
+            // 
+            // ON_btn
+            // 
+            this.ON_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ON_btn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ON_btn.Location = new System.Drawing.Point(413, 305);
+            this.ON_btn.Name = "ON_btn";
+            this.ON_btn.Size = new System.Drawing.Size(73, 29);
+            this.ON_btn.TabIndex = 51;
+            this.ON_btn.Text = "启动";
+            this.ON_btn.UseVisualStyleBackColor = true;
+            this.ON_btn.Click += new System.EventHandler(this.ON_btn_Click);
+            // 
+            // OFF_btn
+            // 
+            this.OFF_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OFF_btn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.OFF_btn.Location = new System.Drawing.Point(667, 305);
+            this.OFF_btn.Name = "OFF_btn";
+            this.OFF_btn.Size = new System.Drawing.Size(72, 29);
+            this.OFF_btn.TabIndex = 52;
+            this.OFF_btn.Text = "停止";
+            this.OFF_btn.UseVisualStyleBackColor = true;
+            this.OFF_btn.Click += new System.EventHandler(this.OFF_btn_Click);
             // 
             // Ele_info
             // 
@@ -496,34 +534,36 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(834, 529);
+            this.Controls.Add(this.OFF_btn);
+            this.Controls.Add(this.ON_btn);
+            this.Controls.Add(this.Resis_check);
+            this.Controls.Add(this.Curr_check);
+            this.Controls.Add(this.Vol_check);
+            this.Controls.Add(this.Pow_check);
             this.Controls.Add(this.Resis_Box);
             this.Controls.Add(this.Set_Resis_btn);
             this.Controls.Add(this.Re_Resis_btn);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.Resistance_label);
-            this.Controls.Add(this.label18);
             this.Controls.Add(this.Voltage_box);
             this.Controls.Add(this.Set_Vol_btn);
             this.Controls.Add(this.Re_Vol_btn);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.Vol_label);
-            this.Controls.Add(this.label14);
             this.Controls.Add(this.Electric);
             this.Controls.Add(this.Set_Ele_btn);
             this.Controls.Add(this.Re_Ele_btn);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.Ele_label);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.Constant_Power);
             this.Controls.Add(this.Set_Pow_btn);
             this.Controls.Add(this.Re_pw_btn);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.Power_label);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -557,7 +597,6 @@
         private System.Windows.Forms.ComboBox Connect_Way;
         private System.Windows.Forms.Button disconnect;
         private System.Windows.Forms.Button connect;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label Power_label;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
@@ -570,20 +609,23 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label Ele_label;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox Voltage_box;
         private System.Windows.Forms.Button Set_Vol_btn;
         private System.Windows.Forms.Button Re_Vol_btn;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label Vol_label;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox Resis_Box;
         private System.Windows.Forms.Button Set_Resis_btn;
         private System.Windows.Forms.Button Re_Resis_btn;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label Resistance_label;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.CheckBox Pow_check;
+        private System.Windows.Forms.CheckBox Vol_check;
+        private System.Windows.Forms.CheckBox Curr_check;
+        private System.Windows.Forms.CheckBox Resis_check;
+        private System.Windows.Forms.Button ON_btn;
+        private System.Windows.Forms.Button OFF_btn;
     }
 }

@@ -396,6 +396,20 @@ namespace BFS
             }
         }
 
+        private void open_clear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string command = $"000000000006000500080000";
+                Global.G_lh.sendData_TY(command);
+                receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("清除开门指令失败: " + ex.Message);
+            }
+        }
+
         private void clear_open(object source, ElapsedEventArgs e)
         {
             try
@@ -449,6 +463,20 @@ namespace BFS
             }
         }
 
+        private void close_clear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string command = $"000000000006000500070000";
+                Global.G_lh.sendData_TY(command);
+                receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("清除关门指令失败: " + ex.Message);
+            }
+        }
+
         private void clear_close(object source, ElapsedEventArgs e)
         {
             try
@@ -460,6 +488,84 @@ namespace BFS
             catch (Exception ex)
             {
                 Console.WriteLine("清除关门指令失败: " + ex.Message);
+            }
+        }
+
+        private void temp_star_btn_Click(object sender, EventArgs e)
+        {
+            if (Global.G_lh.getlh_connected())
+            {
+                try
+                {
+                    string command = $"00000000000600050000FF00";
+                    Global.G_lh.sendData_TY(command);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("发送指令失败: " + ex.Message);
+                }
+
+                string responseText = string.Empty;
+                byte[] responseBytes = new byte[1024 * 5];
+                bool success = Global.G_lh.getResult_TY(ref responseText, ref responseBytes);
+                if (success)
+                {
+                    receivingBox.Items.Add($"{DateTime.Now} 接收命令: " + responseText);
+
+                    MessageBox.Show("开始加热！");
+
+                    //定时器定时清除
+                    System.Timers.Timer timer_close = new System.Timers.Timer();
+                    timer_close.Enabled = true;
+                    timer_close.Interval = 180000;
+                    timer_close.Start();
+                    timer_close.Elapsed += new System.Timers.ElapsedEventHandler(clear_close);
+                }
+            }
+            else
+            {
+                MessageBox.Show("网络串口未打开，请先连接串口！");
+
+            }
+        }
+
+        private void stop_btn_Click(object sender, EventArgs e)
+        {
+            if (Global.G_lh.getlh_connected())
+            {
+                try
+                {
+                    string command = $"00000000000600050001FF00";
+                    Global.G_lh.sendData_TY(command);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("发送指令失败: " + ex.Message);
+                }
+
+                string responseText = string.Empty;
+                byte[] responseBytes = new byte[1024 * 5];
+                bool success = Global.G_lh.getResult_TY(ref responseText, ref responseBytes);
+                if (success)
+                {
+                    receivingBox.Items.Add($"{DateTime.Now} 接收命令: " + responseText);
+
+                    MessageBox.Show("停止加热！");
+
+                    //定时器定时清除
+                    System.Timers.Timer timer_close = new System.Timers.Timer();
+                    timer_close.Enabled = true;
+                    timer_close.Interval = 180000;
+                    timer_close.Start();
+                    timer_close.Elapsed += new System.Timers.ElapsedEventHandler(clear_close);
+                }
+            }
+            else
+            {
+                MessageBox.Show("网络串口未打开，请先连接串口！");
+
             }
         }
     }

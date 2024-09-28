@@ -54,6 +54,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.ON_btn = new System.Windows.Forms.Button();
             this.connect = new System.Windows.Forms.Button();
+            this.OFF_btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -189,10 +190,10 @@
             // Set_Vol_btn2
             // 
             this.Set_Vol_btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Set_Vol_btn2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Set_Vol_btn2.Location = new System.Drawing.Point(582, 103);
+            this.Set_Vol_btn2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Set_Vol_btn2.Location = new System.Drawing.Point(588, 93);
             this.Set_Vol_btn2.Name = "Set_Vol_btn2";
-            this.Set_Vol_btn2.Size = new System.Drawing.Size(70, 30);
+            this.Set_Vol_btn2.Size = new System.Drawing.Size(58, 29);
             this.Set_Vol_btn2.TabIndex = 31;
             this.Set_Vol_btn2.Text = "设置";
             this.Set_Vol_btn2.UseVisualStyleBackColor = true;
@@ -201,10 +202,10 @@
             // Re_Vol_btn2
             // 
             this.Re_Vol_btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Re_Vol_btn2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Re_Vol_btn2.Location = new System.Drawing.Point(582, 23);
+            this.Re_Vol_btn2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Re_Vol_btn2.Location = new System.Drawing.Point(588, 15);
             this.Re_Vol_btn2.Name = "Re_Vol_btn2";
-            this.Re_Vol_btn2.Size = new System.Drawing.Size(70, 29);
+            this.Re_Vol_btn2.Size = new System.Drawing.Size(58, 31);
             this.Re_Vol_btn2.TabIndex = 30;
             this.Re_Vol_btn2.Text = "读取";
             this.Re_Vol_btn2.UseVisualStyleBackColor = true;
@@ -214,7 +215,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(512, 72);
+            this.label7.Location = new System.Drawing.Point(522, 69);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(21, 21);
             this.label7.TabIndex = 29;
@@ -224,7 +225,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(512, 23);
+            this.label6.Location = new System.Drawing.Point(522, 22);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(21, 21);
             this.label6.TabIndex = 28;
@@ -254,7 +255,7 @@
             // Electric2
             // 
             this.Electric2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Electric2.Location = new System.Drawing.Point(468, 184);
+            this.Electric2.Location = new System.Drawing.Point(469, 228);
             this.Electric2.Name = "Electric2";
             this.Electric2.Size = new System.Drawing.Size(40, 29);
             this.Electric2.TabIndex = 37;
@@ -263,27 +264,27 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(511, 190);
+            this.label5.Location = new System.Drawing.Point(522, 231);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(21, 21);
             this.label5.TabIndex = 36;
-            this.label5.Text = "V";
+            this.label5.Text = "A";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(511, 144);
+            this.label8.Location = new System.Drawing.Point(522, 188);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(21, 21);
             this.label8.TabIndex = 35;
-            this.label8.Text = "V";
+            this.label8.Text = "A";
             // 
             // Ele_label2
             // 
             this.Ele_label2.AutoSize = true;
             this.Ele_label2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Ele_label2.Location = new System.Drawing.Point(465, 144);
+            this.Ele_label2.Location = new System.Drawing.Point(466, 188);
             this.Ele_label2.Name = "Ele_label2";
             this.Ele_label2.Size = new System.Drawing.Size(50, 21);
             this.Ele_label2.TabIndex = 34;
@@ -293,7 +294,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(414, 144);
+            this.label10.Location = new System.Drawing.Point(415, 188);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(46, 21);
             this.label10.TabIndex = 33;
@@ -302,10 +303,10 @@
             // ON_btn
             // 
             this.ON_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ON_btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ON_btn.Location = new System.Drawing.Point(582, 181);
+            this.ON_btn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ON_btn.Location = new System.Drawing.Point(588, 164);
             this.ON_btn.Name = "ON_btn";
-            this.ON_btn.Size = new System.Drawing.Size(70, 30);
+            this.ON_btn.Size = new System.Drawing.Size(58, 30);
             this.ON_btn.TabIndex = 38;
             this.ON_btn.Text = "启动";
             this.ON_btn.UseVisualStyleBackColor = true;
@@ -323,12 +324,25 @@
             this.connect.UseVisualStyleBackColor = true;
             this.connect.Click += new System.EventHandler(this.connect_Click);
             // 
+            // OFF_btn
+            // 
+            this.OFF_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OFF_btn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.OFF_btn.Location = new System.Drawing.Point(588, 241);
+            this.OFF_btn.Name = "OFF_btn";
+            this.OFF_btn.Size = new System.Drawing.Size(58, 30);
+            this.OFF_btn.TabIndex = 39;
+            this.OFF_btn.Text = "停止";
+            this.OFF_btn.UseVisualStyleBackColor = true;
+            this.OFF_btn.Click += new System.EventHandler(this.OFF_btn_Click);
+            // 
             // Power_info
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 519);
+            this.Controls.Add(this.OFF_btn);
             this.Controls.Add(this.ON_btn);
             this.Controls.Add(this.Electric2);
             this.Controls.Add(this.label5);
@@ -389,5 +403,6 @@
         private System.Windows.Forms.Label Ele_label2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button ON_btn;
+        private System.Windows.Forms.Button OFF_btn;
     }
 }

@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 using Control = System.Windows.Forms.Control;
 using Timer = System.Windows.Forms.Timer;
 
@@ -19,6 +23,8 @@ namespace BFS
         private TimeSpan countdownTime;
         private TimeSpan initialCountdownTime;
 
+        private System.Windows.Forms.Timer Power_timer;
+        private int currentIndex = 1;
         public Form1()
         {
             InitializeComponent();
@@ -37,6 +43,23 @@ namespace BFS
             this.Elec_label4.Text = Global.sysini.Get_Value("Real_Pow_Ele");
             this.Temp_label2.Text = Global.sysini.Get_Value("Real_Temp");
             flash_form();
+
+            //页面实时数据
+            RealInfo_timer = new Timer();
+            RealInfo_timer.Interval = 5000;
+            RealInfo_timer.Tick += RealInfo_Tick;
+            RealInfo_timer.Start();
+
+            //功率段设置
+            Power_timer = new Timer();
+            Power_timer.Interval = 10000; // 设置间隔为 10000 毫秒（10秒）  
+            Power_timer.Tick += PowerSegment_Tick; // 绑定 Tick 事件  
+                                                   //Power_timer.Start();
+            //获取电子负载实时数据
+            Ele_timer = new Timer();
+            Ele_timer.Interval = 10000; // 设置间隔为 10000 毫秒（10秒）  
+            Ele_timer.Tick += EleInfo_Tick; // 绑定 Tick 事件  
+            //Ele_timer.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -50,7 +73,7 @@ namespace BFS
 
             Ele_connection();
             Power_connection();
-            //lh_connection();
+            lh_connection();
             Relay_connection();
         }
 
@@ -58,7 +81,99 @@ namespace BFS
         private void flash_form()
         {
             //电子负载
+            string ele_pow_staus = Global.sysini.Get_Value("Ele_Power_Status");
+            string ele_vol_staus = Global.sysini.Get_Value("Ele_Vol_Status");
+            string ele_ele_staus = Global.sysini.Get_Value("Ele_Ele_Status");
+            string ele_resis_staus = Global.sysini.Get_Value("Ele_Resis_Status");
+            if ( ele_pow_staus == "ON" ) 
+            {
+                ele_groupBox.Text = "恒功率模式";
+                ele_lb1.Text = "电压：";
+                ele_lb2.Text = "0.0";
+                ele_lb3.Text = "V";
+                ele_lb4.Text = "电流："; 
+                ele_lb5.Text = "0.0";
+                ele_lb6.Text = "A";
+                ele_lb7.Text = "电阻：";
+                ele_lb8.Text = "0.0";
+                ele_lb9.Text = "Ω";
+            }
+            if (ele_vol_staus == "ON")
+            {
+                ele_groupBox.Text = "恒电压模式";
+                ele_lb1.Text = "功率：";
+                ele_lb2.Text = "0.0";
+                ele_lb3.Text = "W";
+                ele_lb4.Text = "电流：";
+                ele_lb5.Text = "0.0";
+                ele_lb6.Text = "A";
+                ele_lb7.Text = "电阻：";
+                ele_lb8.Text = "0.0";
+                ele_lb9.Text = "Ω";
+            }
+            if (ele_ele_staus == "ON")
+            {
+                ele_groupBox.Text = "恒电流模式";
+                ele_lb1.Text = "功率：";
+                ele_lb2.Text = "0.0";
+                ele_lb3.Text = "W";
+                ele_lb4.Text = "电压：";
+                ele_lb5.Text = "0.0";
+                ele_lb6.Text = "V";
+                ele_lb7.Text = "电阻：";
+                ele_lb8.Text = "0.0";
+                ele_lb9.Text = "Ω";
+            }
+            if (ele_resis_staus == "ON")
+            {
+                ele_groupBox.Text = "恒电阻模式";
+                ele_lb1.Text = "功率";
+                ele_lb2.Text = "0.0";
+                ele_lb3.Text = "W";
+                ele_lb4.Text = "电压";
+                ele_lb5.Text = "0.0";
+                ele_lb6.Text = "V";
+                ele_lb7.Text = "电流";
+                ele_lb8.Text = "0.0";
+                ele_lb9.Text = "A";
+            }
             pw_label.Text = Global.sysini.Get_Value("Ele_Power");
+            power_1.Text = Global.sysini.Get_Value("Ele_Power_1");
+            if (power_1.Text != "0.0")
+            {
+                power_1.Visible = true;
+            }
+            else
+            {
+                power_1.Visible = false;
+            }
+            power_2.Text = Global.sysini.Get_Value("Ele_Power_2");
+            if (power_2.Text != "0.0")
+            {
+                power_2.Visible = true;
+            }
+            else
+            {
+                power_2.Visible = false;
+            }
+            power_3.Text = Global.sysini.Get_Value("Ele_Power_3");
+            if (power_3.Text != "0.0")
+            {
+                power_3.Visible = true;
+            }
+            else
+            {
+                power_3.Visible = false;
+            }
+            power_4.Text = Global.sysini.Get_Value("Ele_Power_4");
+            if (power_4.Text != "0.0")
+            {
+                power_4.Visible = true;
+            }
+            else
+            {
+                power_4.Visible = false;
+            }
             vol_label_2.Text = Global.sysini.Get_Value("Ele_Vol");
             ele_label_2.Text = Global.sysini.Get_Value("Ele_Ele");
             resis_label_2.Text = Global.sysini.Get_Value("Ele_Resis");
@@ -89,151 +204,25 @@ namespace BFS
             temp_label_2.Text = Global.sysini.Get_Value("lh_Temp");
 
             //继电器
-            string relay1_status = Global.sysini.Get_Value("Relay1_Status");
-            if (relay1_status == "ON")
+            Label[] relayLabels = new Label[] { relay1_label, relay2_label, relay3_label, relay4_label, relay5_label,
+                                                relay6_label, relay7_label, relay8_label, relay9_label, relay10_label,
+                                                relay11_label, relay12_label, relay13_label, relay14_label, relay15_label, relay16_label };
+            // 循环遍历所有继电器的状态
+            for (int i = 1; i <= 16; i++)
             {
-                relay1_label.Text = "ON";
-            }
-            else if (relay1_status == "OFF")
-            {
-                relay1_label.Text = "OFF";
-            }
-            string relay2_status = Global.sysini.Get_Value("Relay2_Status");
-            if (relay2_status == "ON")
-            {
-                relay2_label.Text = "ON";
-            }
-            else if (relay2_status == "OFF")
-            {
-                relay2_label.Text = "OFF";
-            }
-            string relay3_status = Global.sysini.Get_Value("Relay3_Status");
-            if (relay3_status == "ON")
-            {
-                relay3_label.Text = "ON";
-            }
-            else if (relay3_status == "OFF")
-            {
-                relay3_label.Text = "OFF";
-            }
-            string relay4_status = Global.sysini.Get_Value("Relay4_Status");
-            if (relay4_status == "ON")
-            {
-                relay4_label.Text = "ON";
-            }
-            else if (relay4_status == "OFF")
-            {
-                relay4_label.Text = "OFF";
-            }
-            string relay5_status = Global.sysini.Get_Value("Relay5_Status");
-            if (relay5_status == "ON")
-            {
-                relay5_label.Text = "ON";
-            }
-            else if (relay5_status == "OFF")
-            {
-                relay5_label.Text = "OFF";
-            }
-            string relay6_status = Global.sysini.Get_Value("Relay6_Status");
-            if (relay6_status == "ON")
-            {
-                relay6_label.Text = "ON";
-            }
-            else if (relay6_status == "OFF")
-            {
-                relay6_label.Text = "OFF";
-            }
-            string relay7_status = Global.sysini.Get_Value("Relay7_Status");
-            if (relay7_status == "ON")
-            {
-                relay7_label.Text = "ON";
-            }
-            else if (relay7_status == "OFF")
-            {
-                relay7_label.Text = "OFF";
-            }
-            string relay8_status = Global.sysini.Get_Value("Relay8_Status");
-            if (relay8_status == "ON")
-            {
-                relay8_label.Text = "ON";
-            }
-            else if (relay8_status == "OFF")
-            {
-                relay8_label.Text = "OFF";
-            }
-            string relay9_status = Global.sysini.Get_Value("Relay9_Status");
-            if (relay9_status == "ON")
-            {
-                relay9_label.Text = "ON";
-            }
-            else if (relay9_status == "OFF")
-            {
-                relay9_label.Text = "OFF";
-            }
-            string relay10_status = Global.sysini.Get_Value("Relay10_Status");
-            if (relay10_status == "ON")
-            {
-                relay10_label.Text = "ON";
-            }
-            else if (relay10_status == "OFF")
-            {
-                relay10_label.Text = "OFF";
-            }
-            string relay11_status = Global.sysini.Get_Value("Relay11_Status");
-            if (relay11_status == "ON")
-            {
-                relay11_label.Text = "ON";
-            }
-            else if (relay11_status == "OFF")
-            {
-                relay11_label.Text = "OFF";
-            }
-            string relay12_status = Global.sysini.Get_Value("Relay12_Status");
-            if (relay12_status == "ON")
-            {
-                relay12_label.Text = "ON";
-            }
-            else if (relay12_status == "OFF")
-            {
-                relay12_label.Text = "OFF";
-            }
-            string relay13_status = Global.sysini.Get_Value("Relay13_Status");
-            if (relay13_status == "ON")
-            {
-                relay13_label.Text = "ON";
-            }
-            else if (relay13_status == "OFF")
-            {
-                relay13_label.Text = "OFF";
-            }
-            string relay14_status = Global.sysini.Get_Value("Relay14_Status");
-            if (relay14_status == "ON")
-            {
-                relay14_label.Text = "ON";
-            }
-            else if (relay14_status == "OFF")
-            {
-                relay14_label.Text = "OFF";
-            }
-            string relay15_status = Global.sysini.Get_Value("Relay15_Status");
-            if (relay15_status == "ON")
-            {
-                relay15_label.Text = "ON";
-            }
-            else if (relay15_status == "OFF")
-            {
-                relay15_label.Text = "OFF";
-            }
-            string relay16_status = Global.sysini.Get_Value("Relay16_Status");
-            if (relay16_status == "ON")
-            {
-                relay16_label.Text = "ON";
-            }
-            else if (relay16_status == "OFF")
-            {
-                relay16_label.Text = "OFF";
-            }
+                string statusKey = $"Relay{i}_Status";
+                string statusValue = Global.sysini.Get_Value(statusKey);
 
+                // 根据继电器的状态更新标签文本
+                if (statusValue == "ON")
+                {
+                    relayLabels[i - 1].Text = "ON";
+                }
+                else if (statusValue == "OFF")
+                {
+                    relayLabels[i - 1].Text = "OFF";
+                }
+            }
         }
 
         //将当前程序的某一窗口程序 显示到指定容器控件上
@@ -250,11 +239,6 @@ namespace BFS
             //显示窗体
             objFrm.Show();
         }
-
-        //信息调试
-        //Info info = null;
-        //老化详细界面
-        //lh_info lh = null;
         //电子负载
         Ele_info ele = null;
         //万瑞达电源
@@ -273,17 +257,7 @@ namespace BFS
                     ////判断是否是第一次打开当前 tabPage 页 
                     ////如果是 第一次 那么就创建窗体
                     ////如果不是 那么 这个窗体已经存在了，不可重复在当前父控件多次创建子窗体
-                    //if (info == null)
-                    //{
-                    //    //创建窗口
-                    //    info = new Info();
-                    //    //设置将子窗口 与 父控件 撑满 （子窗口各边缘 停靠在父控件各边缘）
-                    //    info.Dock = DockStyle.Fill;
-                    //    //调用方法将 指定窗口 显示在指定控件内
-                    //    OpenFrom(info, this.info_Page);
-                    //}
                     flash_form();
-                    //real_info();
                     break;
                 case 1:
                     if (ele == null)
@@ -458,23 +432,19 @@ namespace BFS
                     countdownTimer.Stop();
                     UpdateCountdownDisplay(TimeSpan.Zero);
                     progressBar_time.Value = progressBar_time.Maximum; // 进度条达到最大值
-                    MessageBox.Show("老化结束！");
+
+                    Global.G_Rel.sendData_TY($"AT+STACH4=1\r\n");
+                    DialogResult result = MessageBox.Show("老化结束", "操作确认", MessageBoxButtons.OK);
+                    if(result == DialogResult.OK) 
+                    {
+                        string command = $"AT+STACH4=0\r\n";
+                        Global.G_Rel.sendData_TY(command);
+                    }
+                    //MessageBox.Show("老化结束！");
+
                     //老化时间结束重置设备
                     Reset_device();
                     MessageBox.Show("设备重置成功");
-
-                    //打开门的操作
-                    //DialogResult result = MessageBox.Show("是否打开门？", "操作确认", MessageBoxButtons.YesNo);
-                    //if (result == DialogResult.Yes)
-                    //{
-                    //    // 用户点击了"Yes"
-                    //    //Door door1 = new Door();
-                    //    //door1.Show();
-                    //}
-                    //else
-                    //{
-                    //    // 用户点击了"No"，执行不打开门的操作
-                    //}
                 }
             }
             else
@@ -508,10 +478,12 @@ namespace BFS
                 return;
             }
 
-            bool result = Ele_lh();
+            //bool result = Ele_lh();
+            bool result = Power_lh();
             if (result)
             {
-                bool result2 = Power_lh();
+                //bool result2 = Power_lh();
+                bool result2 = Ele_lh();
                 if (result2)
                 {
                     bool result3 = Room_lh();
@@ -535,14 +507,13 @@ namespace BFS
                 }
                 else
                 {
-                    MessageBox.Show("万瑞达老化设置失败！");
+                    MessageBox.Show("电子负载老化失败！");
                 }
             }
             else
             {
-                MessageBox.Show("电子负载老化失败！");
+                MessageBox.Show("万瑞达老化设置失败！");
             }
-            //StartCountdown(countdownTime);
         }
 
         //*************************** 老化参数 ***********************//
@@ -552,29 +523,169 @@ namespace BFS
             bool Ele_success = false;
             if (Global.G_ELe.getEle_connected())
             {
+                //开机
+                string open = "INPut:STATe ON";
+                string ON_data = open + "\r\n";
+                Global.G_ELe.sendData_TY(ON_data);
+
                 try
                 {
-                    //恒功率
-                    string power = "STATic:CP:LEVel " + pw_label.Text;
-                    string P_data = power + "\r\n";
-                    Global.G_ELe.sendData_TY(P_data);
-                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + power);
-                    //电压
-                    string voltage = "STATic:CV:HIGH:LEVel " + vol_label_2.Text;
-                    string V_data = voltage + "\r\n";
-                    Global.G_ELe.sendData_TY(V_data);
-                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + voltage);
-                    //电流
-                    string electric = "STATic:CC:HIGH:LEVel " + ele_label_2.Text;
-                    string E_data = electric + "\r\n";
-                    Global.G_ELe.sendData_TY(E_data);
-                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + electric);
-                    //电阻
-                    string resistan = "STATic:CR:LOW:LEVel " + resis_label_2.Text;
-                    string R_data = resistan + "\r\n";
-                    Global.G_ELe.sendData_TY(R_data);
-                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
+                    if( ele_groupBox.Text == "恒功率模式")
+                    {
+                        //切换模式
+                        string mode_1 = "INPut:FUNCtion CP";
+                        string M_data = mode_1 + "\r\n";
+                        Global.G_ELe.sendData_TY(M_data);
+                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + M_data);
 
+                        //恒功率
+                        string power = "STATic:CP:LEVel " + pw_label.Text;
+                        string P_data = power + "\r\n";
+                        Global.G_ELe.sendData_TY(P_data);
+                        //receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + power);
+
+                        Ele_timer.Start();
+
+                        ////其他参数
+                        //string read_cv = "STATic:CV:HIGH:LEVel?\r\n";
+                        //Global.G_ELe.sendData_TY(read_cv);
+                        //string response_cv = string.Empty;
+                        //byte[] responseBytes_cv = new byte[1024 * 5]; // 根据需要设置合适的大小
+                        //bool success_cv = Global.G_ELe.getResult_TY(ref response_cv, ref responseBytes_cv);
+                        //if (success_cv)
+                        //{
+                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
+                        //    string result = response_cv.Substring(0, 5);
+                        //    ele_lb2.Text = result;
+                        //}
+                        //Read_E_CC();
+                        //Read_E_CR();
+
+                        //Power_timer.Start();
+                    }
+                    else if (ele_groupBox.Text == "恒电压模式")
+                    {
+                        string mode_2 = "INPut:FUNCtion CP";
+                        string M_data = mode_2 + "\r\n";
+                        Global.G_ELe.sendData_TY(M_data);
+
+                        //电压
+                        string voltage = "STATic:CV:HIGH:LEVel " + vol_label_2.Text;
+                        string V_data = voltage + "\r\n";
+                        Global.G_ELe.sendData_TY(V_data);
+                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + voltage);
+
+                        Ele_timer.Start();
+
+                        //其他参数
+                        //string read_cp = "STATic:CP:HIGH:LEVel?\r\n";
+                        //Global.G_ELe.sendData_TY(read_cp);
+                        //string response_cp = string.Empty;
+                        //byte[] responseBytes_cp = new byte[1024 * 5]; // 根据需要设置合适的大小
+                        //bool success_cp = Global.G_ELe.getResult_TY(ref response_cp, ref responseBytes_cp);
+                        //if (success_cp)
+                        //{
+                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
+                        //    string result = response_cp.Substring(0, 5);
+                        //    ele_lb2.Text = result;
+                        //}
+
+                        //Read_E_CC();
+                        //Read_E_CR();
+
+                    }
+                    else if(ele_groupBox.Text == "恒电流模式") 
+                    {
+                        string mode_3 = "INPut:FUNCtion CC";
+                        string M_data = mode_3 + "\r\n";
+                        Global.G_ELe.sendData_TY(M_data);
+
+                        //电流
+                        string electric = "STATic:CC:HIGH:LEVel " + ele_label_2.Text;
+                        string E_data = electric + "\r\n";
+                        Global.G_ELe.sendData_TY(E_data);
+                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + electric);
+
+                        Ele_timer.Start();
+
+                        ////其他参数
+                        //string read_cp = "STATic:CP:HIGH:LEVel?\r\n";
+                        //Global.G_ELe.sendData_TY(read_cp);
+                        //string response_cp = string.Empty;
+                        //byte[] responseBytes_cp = new byte[1024 * 5]; // 根据需要设置合适的大小
+                        //bool success_cp = Global.G_ELe.getResult_TY(ref response_cp, ref responseBytes_cp);
+                        //if (success_cp)
+                        //{
+                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
+                        //    string result = response_cp.Substring(0, 5);
+                        //    ele_lb2.Text = result;
+                        //}
+
+                        //string read_cv = "STATic:CV:HIGH:LEVel?\r\n";
+                        //Global.G_ELe.sendData_TY(read_cv);
+                        //string response_cv = string.Empty;
+                        //byte[] responseBytes_cv = new byte[1024 * 5]; // 根据需要设置合适的大小
+                        //bool success_cv = Global.G_ELe.getResult_TY(ref response_cv, ref responseBytes_cv);
+                        //if (success_cv)
+                        //{
+                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
+                        //    string result = response_cv.Substring(0, 5);
+                        //    ele_lb5.Text = result;
+                        //}
+                        //Read_E_CR();
+                    }
+                    else if(ele_groupBox.Text == "恒电阻模式")
+                    {
+                        string mode_4 = "INPut:FUNCtion CC";
+                        string M_data = mode_4 + "\r\n";
+                        Global.G_ELe.sendData_TY(M_data);
+
+                        //电阻
+                        string resistan = "STATic:CR:HIGH:LEVel " + resis_label_2.Text;
+                        string R_data = resistan + "\r\n";
+                        Global.G_ELe.sendData_TY(R_data);
+                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
+
+                        Ele_timer.Start();
+
+                        ////其他参数
+                        //string read_cp = "STATic:CP:HIGH:LEVel?\r\n";
+                        //Global.G_ELe.sendData_TY(read_cp);
+                        //string response_cp = string.Empty;
+                        //byte[] responseBytes_cp = new byte[1024 * 5]; // 根据需要设置合适的大小
+                        //bool success_cp = Global.G_ELe.getResult_TY(ref response_cp, ref responseBytes_cp);
+                        //if (success_cp)
+                        //{
+                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
+                        //    string result = response_cp.Substring(0, 5);
+                        //    ele_lb2.Text = result;
+                        //}
+
+                        //string read_cv = "STATic:CV:HIGH:LEVel?\r\n";
+                        //Global.G_ELe.sendData_TY(read_cv);
+                        //string response_cv = string.Empty;
+                        //byte[] responseBytes_cv = new byte[1024 * 5]; // 根据需要设置合适的大小
+                        //bool success_cv = Global.G_ELe.getResult_TY(ref response_cv, ref responseBytes_cv);
+                        //if (success_cv)
+                        //{
+                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
+                        //    string result = response_cv.Substring(0, 5);
+                        //    ele_lb5.Text = result;
+                        //}
+
+                        //string read_cc = "STATic:CC:HIGH:LEVel?\r\n";
+                        //Global.G_ELe.sendData_TY(read_cc);
+                        //string response_cc = string.Empty;
+                        //byte[] responseBytes_cc = new byte[1024 * 5]; // 根据需要设置合适的大小
+                        //bool success_cc = Global.G_ELe.getResult_TY(ref response_cc, ref responseBytes_cc);
+                        //if (success_cc)
+                        //{
+                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
+                        //    string result = response_cc.Substring(0, 5);
+                        //    ele_lb8.Text = result;
+                        //}
+
+                    }
                     Ele_success = true;
                 }
                 catch (Exception ex)
@@ -589,6 +700,90 @@ namespace BFS
             return Ele_success;
         }
 
+        /************************ 其他参数 ******************/
+        private void EleInfo_Tick(object sender, EventArgs e)
+        {
+            Read_E_CV();
+            Read_E_CC();
+            Read_E_CP();
+        }
+        private void Read_E_CP() 
+        {
+            Task.Run(() =>
+            {
+                string read_cp = "STATic:CP:HIGH:LEVel?\r\n";
+                Global.G_ELe.sendData_TY(read_cp);
+
+                this.Invoke((MethodInvoker)delegate
+                {
+                    string response_cp = string.Empty;
+                    byte[] responseBytes_cp = new byte[1024 * 5]; // 根据需要设置合适的大小
+                    bool success_cp = Global.G_ELe.getResult_TY(ref response_cp, ref responseBytes_cp);
+                    if (success_cp)
+                    {
+                        //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
+                        string result = response_cp.Substring(0, 5);
+                        ele_lb8.Text = result;
+                    }
+                });
+            });
+        }
+        private void Read_E_CC() 
+        {
+            Task.Run(() =>
+            {
+                string read_cc = "STATic:CC:HIGH:LEVel?\r\n";
+                Global.G_ELe.sendData_TY(read_cc);
+
+                this.Invoke((MethodInvoker)delegate
+                {
+                    string response_cc = string.Empty;
+                    byte[] Bytes_cc = new byte[1024 * 5]; // 根据需要设置合适的大小
+                    bool success_cc = Global.G_ELe.getResult_TY(ref response_cc, ref Bytes_cc);
+                    if (success_cc)
+                    {
+                        //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
+                        string result_cc = response_cc.Substring(0, 5);
+                        ele_lb5.Text = result_cc;
+                    }
+                });
+            });
+        }
+        private void Read_E_CV()
+        {
+            Task.Run(() => {
+                string read_cv = "STATic:CV:HIGH:LEVel?\r\n";
+                Global.G_ELe.sendData_TY(read_cv);
+
+                this.Invoke((MethodInvoker)delegate
+                {
+                    string response_cv = string.Empty;
+                    byte[] Bytes_cv = new byte[1024 * 5]; // 根据需要设置合适的大小
+                    bool success_cv = Global.G_ELe.getResult_TY(ref response_cv, ref Bytes_cv);
+                    if (success_cv)
+                    {
+                        //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
+                        string result_cv = response_cv.Substring(0, 5);
+                        ele_lb2.Text = result_cv;
+                    }
+                });
+            });
+        }
+        private void Read_E_CR()
+        {
+            string read_cr = "STATic:CR:HIGH:LEVel?\r\n";
+            Global.G_ELe.sendData_TY(read_cr);
+            string response_cr = string.Empty;
+            byte[] Bytes_cr = new byte[1024 * 5]; // 根据需要设置合适的大小
+            bool success_cr = Global.G_ELe.getResult_TY(ref response_cr, ref Bytes_cr);
+            if (success_cr)
+            {
+                //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
+                string result_cr = response_cr.Substring(0, 5);
+                ele_lb8.Text = result_cr;
+            }
+        }
+
         //万瑞达电源老化
         private bool Power_lh()
         {
@@ -597,20 +792,21 @@ namespace BFS
             {
                 try
                 {
-                    //万瑞达电源状态（作用是什么）
-                    //if(status_label1.Text == "ON")
-                    //{
-                    //    string command1 = $"01050085FF009DD3";
-                    //    command1 = command1.Replace(" ", "");
-                    //    Global.G_Power.sendData_TY(command1);
-                    //    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command1);
-                    //}else if(status_label2.Text == "OFF")
-                    //{
-                    //    string command2 = $"010500850000DC23";
-                    //    command2 = command2.Replace(" ", "");
-                    //    Global.G_Power.sendData_TY(command1);
-                    //    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command2);
-                    //}
+                    //万瑞达电源状态
+                    if (status_label1.Text == "ON")
+                    {
+                        string command1 = $"01050085FF009DD3";
+                        command1 = command1.Replace(" ", "");
+                        Global.G_Power.sendData_TY(command1);
+                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command1);
+                    }
+                    else if (status_label2.Text == "OFF")
+                    {
+                        string command3 = $"010500850000DC23";
+                        command3 = command3.Replace(" ", "");
+                        Global.G_Power.sendData_TY(command3);
+                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command3);
+                    }
                     //电压
                     int Vol_value = int.Parse(vol_label_3.Text);
                     int Vol_valueTextBox = Vol_value * 10;
@@ -641,23 +837,6 @@ namespace BFS
                 {
                     Console.WriteLine("发送指令失败: " + ex.Message);
                 }
-
-                //string responseText = string.Empty;
-                //byte[] responseBytes = new byte[1024 * 5]; // 根据需要设置合适的大小
-                //bool success = Global.G_Power.getResult_TY(ref responseText, ref responseBytes);
-                //receivingBox.Items.Add($"{DateTime.Now} 接收命令: " + responseText);
-                //if (success)
-                //{
-                //    string command3 = $"01100095000251e4";
-                //    if (responseText == command3)
-                //    {
-                //        receivingBox.Items.Add("设置成功！");
-                //    }
-                //}
-                //else
-                //{
-                //    receivingBox.Items.Add("设置失败！");
-                //}
             }
             else
             {
@@ -676,20 +855,20 @@ namespace BFS
                 try
                 {
                     //老化柜状态
-                    //if (status_label2.Text == "ON")
-                    //{
-                    //    string command1 = $"后续补充";
-                    //    command1 = command1.Replace(" ", "");
-                    //    Global.G_lh.sendData_TY(command1);
-                    //    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command1);
-                    //}
-                    //else if (status_label2.Text == "OFF")
-                    //{
-                    //    string command1 = $"后续补充";
-                    //    command1 = command1.Replace(" ", "");
-                    //    Global.G_lh.sendData_TY(command1);
-                    //    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command1);
-                    //}
+                    if (status_label2.Text == "ON")
+                    {
+                        string command1 = $"00000000000600050000FF00";
+                        command1 = command1.Replace(" ", "");
+                        Global.G_lh.sendData_TY(command1);
+                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command1);
+                    }
+                    else if (status_label2.Text == "OFF")
+                    {
+                        string command1 = $"00000000000600050001FF00";
+                        command1 = command1.Replace(" ", "");
+                        Global.G_lh.sendData_TY(command1);
+                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command1);
+                    }
 
                     string decimalValueString = temp_label_2.Text.Trim();
                     if (decimal.TryParse(decimalValueString, out decimal decimalValue))
@@ -764,7 +943,7 @@ namespace BFS
                                 Console.WriteLine("输入错误，请重新输入！");
                             }
                         }
-                        //Room_success = true;
+                        Room_success = true;
                     }
 
                 }
@@ -781,543 +960,112 @@ namespace BFS
         }
 
         //继电器老化
+        private bool RelayControl(int relayNumber, bool state)
+        {
+            try
+            {
+                string command = $"AT+STACH{relayNumber}={(state ? 1 : 0)}\r\n";
+                Global.G_Rel.sendData_TY(command);
+                receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"继电器{relayNumber}控制失败: {ex.Message}");
+                return false;
+            }
+            return true;
+        }
+
         private bool Relay_lh()
         {
-            bool Relay_success = false;
-            if (Global.G_Rel.getRelay_connected())
+            bool Relay_success = true;
+            var relayStates = new (int, bool)[] {
+            (1, relay1_label.Text == "ON"),
+            (2, relay2_label.Text == "ON"),
+            (3, relay3_label.Text == "ON"),
+            (4, relay4_label.Text == "ON"),
+            (5, relay5_label.Text == "ON"),
+            (6, relay6_label.Text == "ON"),
+            (7, relay7_label.Text == "ON"),
+            (8, relay8_label.Text == "ON"),
+            (9, relay9_label.Text == "ON"),
+            (10, relay10_label.Text == "ON"),
+            (11, relay11_label.Text == "ON"),
+            (12, relay12_label.Text == "ON"),
+            (13, relay13_label.Text == "ON"),
+            (14, relay14_label.Text == "ON"),
+            (15, relay15_label.Text == "ON"),
+            (16, relay16_label.Text == "ON")
+            };
+
+            foreach (var (relayNumber, state) in relayStates)
             {
-                if (relay1_label.Text == "ON")
+                if (!RelayControl(relayNumber, state))
                 {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH1=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
+                    Relay_success = false;
                 }
-                else if (relay1_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH1=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay2_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH2=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay2_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH2=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay3_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH3=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay3_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH3=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay4_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH4=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay4_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH4=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay5_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH5=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay5_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH5=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay6_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH6=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay6_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH6=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay7_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH7=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay7_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH7=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay8_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH8=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay8_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH8=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay9_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH9=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay9_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH9=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay10_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH10=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay10_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH10=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay11_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH11=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay11_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH11=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay12_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH12=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay12_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH12=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay13_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH13=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay13_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH13=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay14_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH14=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay14_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH14=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay15_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH15=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay15_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH15=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                if (relay16_label.Text == "ON")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH16=1\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                else if (relay16_label.Text == "OFF")
-                {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH16=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("发送指令失败: " + ex.Message);
-                    }
-                }
-                Relay_success = true;
             }
             return Relay_success;
         }
 
-        //************************* 老化暂停 *********************//
-        private void Paused_btn_Click(object sender, EventArgs e)
-        {
-            PauseCountdown();
-            MessageBox.Show("已停止老化！");
-        }
-
-        //************************ 设备重置 ******************//
         private void Reset_device()
         {
             if (Global.G_ELe.getEle_connected())
             {
-                //恒功率
-                string power = "STATic:CP:LEVel 0";
-                string P_data = power + "\r\n";
-                Global.G_ELe.sendData_TY(P_data);
-                receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + power);
-                //电压
-                string voltage = "STATic:CV:HIGH:LEVel 0";
-                string V_data = voltage + "\r\n";
-                Global.G_ELe.sendData_TY(V_data);
-                receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + voltage);
-                //电流
-                string electric = "STATic:CC:HIGH:LEVel 0";
-                string E_data = electric + "\r\n";
-                Global.G_ELe.sendData_TY(E_data);
-                receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + electric);
-                //电阻
-                string resistan = "STATic:CR:LOW:LEVel 0";
-                string R_data = resistan + "\r\n";
-                Global.G_ELe.sendData_TY(R_data);
-                receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
+                try
+                {
+                    //关机
+                    string close = "INPut:STATe OFF";
+                    string OFF_data = close + "\r\n";
+                    Global.G_ELe.sendData_TY(OFF_data);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("电子负载重置失败: " + ex.Message);
+                }
             }
             if (Global.G_Power.getPow_connected())
             {
                 try
                 {
-                    //万瑞达电源状态
-                    //if(status_label1.Text == "ON")
-                    //{
-                    //    string command1 = $"后续补充";
-                    //    command1 = command1.Replace(" ", "");
-                    //    Global.G_Power.sendData_TY(command1);
-                    //    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command1);
-                    //}else if(status_label2.Text == "OFF")
-                    //{
-                    //    string command1 = $"后续补充";
-                    //    command1 = command1.Replace(" ", "");
-                    //    Global.G_Power.sendData_TY(command1);
-                    //    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command1);
-                    //}
-                    string command = $"0110009500020400000000";
-                    command = command.Replace(" ", "");
-                    byte[] commandBytes = Global.G_Power.HexStringToByteArray(command);
-                    ushort crc = Crc16ANSI.ComputeChecksum(commandBytes);
-                    Console.WriteLine("CRC-16-CCITT: " + crc.ToString("X4")); // 输出CRC值，格式化为4位十六进制数
-                    string crc1 = crc.ToString("X4");
-                    string command2 = command + crc1;
-                    Global.G_Power.sendData_TY(command2);
-                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command2);
+                    string command3 = $"010500850000DC23";
+                    command3 = command3.Replace(" ", "");
+                    Global.G_Power.sendData_TY(command3);
 
-                    if (Global.G_lh.getlh_connected())
-                    {
-                        string lh_command = $"000000000006000600000000";
-                        Global.G_lh.sendData_TY(lh_command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + lh_command);
-                    }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("发送指令失败: " + ex.Message);
+                    MessageBox.Show("万瑞达重置失败: " + ex.Message);
                 }
             }
             else
             {
-                MessageBox.Show("网络串口未打开，请先连接串口！");
+                MessageBox.Show("万瑞达网络串口未打开，请先连接串口！");
             }
+
+            if (Global.G_lh.getlh_connected())
+            {
+                try
+                {
+                    string command = $"00000000000600050001FF00";
+                    Global.G_lh.sendData_TY(command);
+                    //receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("老化柜重置失败 " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("老化柜网络串口未打开，请先连接串口！");
+
+            }
+
             Reset_Relay();
         }
+
+        /************************** 数据类型转换 ***********************/
         public static int HexStringToDecimal(string hexString)
         {
             // 验证输入字符串是否只包含有效的十六进制字符（0-9, A-F, a-f）  
@@ -1342,198 +1090,258 @@ namespace BFS
         {
             if (Global.G_Rel.getRelay_connected())
             {
-                    try
-                    {
-                        // 构造指令，确保使用正确的十六进制值
-                        string command = $"AT+STACH1=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器1重置失败: " + ex.Message);
-                    }
+                /*try
+                  {
+                      // 构造指令，确保使用正确的十六进制值
+                      string command = $"AT+STACH1=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器1重置失败: " + ex.Message);
+                  }
 
-                    try
-                    {
-                        string command = $"AT+STACH2=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器2重置失败: " + ex.Message);
-                    }
+                  try
+                  {
+                      string command = $"AT+STACH2=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器2重置失败: " + ex.Message);
+                  }
 
-                    try
-                    {
-                        string command = $"AT+STACH3=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器3重置失败: " + ex.Message);
-                    }
+                  try
+                  {
+                      string command = $"AT+STACH3=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器3重置失败: " + ex.Message);
+                  }
 
-                    try
-                    {
-                        string command = $"AT+STACH4=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器4重置失败: " + ex.Message);
-                    }
+                  try
+                  {
+                      string command = $"AT+STACH4=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器4重置失败: " + ex.Message);
+                  }
 
-                    try
-                    {
-                        string command = $"AT+STACH5=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器5重置失败: " + ex.Message);
-                    }
+                  try
+                  {
+                      string command = $"AT+STACH5=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器5重置失败: " + ex.Message);
+                  }
 
-                    try
-                    {
-                        string command = $"AT+STACH6=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器6重置失败: " + ex.Message);
-                    }
+                  try
+                  {
+                      string command = $"AT+STACH6=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器6重置失败: " + ex.Message);
+                  }
 
-                    try
-                    {
-                        string command = $"AT+STACH7=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器7重置失败: " + ex.Message);
-                    }
+                  try
+                  {
+                      string command = $"AT+STACH7=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器7重置失败: " + ex.Message);
+                  }
 
-                    try
-                    {
-                        string command = $"AT+STACH8=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器8重置失败: " + ex.Message);
-                    }
+                  try
+                  {
+                      string command = $"AT+STACH8=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器8重置失败: " + ex.Message);
+                  }
 
-                    try
-                    {
-                        string command = $"AT+STACH9=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器9重置失败: " + ex.Message);
-                    }
+                  try
+                  {
+                      string command = $"AT+STACH9=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器9重置失败: " + ex.Message);
+                  }
 
 
-                    try
-                    {
-                        string command = $"AT+STACH10=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器10重置失败: " + ex.Message);
-                    }
+                  try
+                  {
+                      string command = $"AT+STACH10=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器10重置失败: " + ex.Message);
+                  }
 
-  
-                    try
-                    {
-                        string command = $"AT+STACH11=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器11重置失败: " + ex.Message);
-                    }
 
-                    try
-                    {
-                        string command = $"AT+STACH12=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器12重置失败: " + ex.Message);
-                    }
+                  try
+                  {
+                      string command = $"AT+STACH11=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器11重置失败: " + ex.Message);
+                  }
 
-                    try
-                    {
-                        string command = $"AT+STACH13=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器13重置失败: " + ex.Message);
-                    }
-      
-                    try
-                    {
-                        string command = $"AT+STACH14=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器14重置失败: " + ex.Message);
-                    }
-    
-                    try
-                    {
-                        string command = $"AT+STACH15=0\r\n";
-                        Global.G_Rel.sendData_TY(command);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("继电器15重置失败: " + ex.Message);
-                    }
+                  try
+                  {
+                      string command = $"AT+STACH12=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器12重置失败: " + ex.Message);
+                  }
 
+                  try
+                  {
+                      string command = $"AT+STACH13=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器13重置失败: " + ex.Message);
+                  }
+
+                  try
+                  {
+                      string command = $"AT+STACH14=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器14重置失败: " + ex.Message);
+                  }
+
+                  try
+                  {
+                      string command = $"AT+STACH15=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器15重置失败: " + ex.Message);
+                  }
+
+                  try
+                  {
+                      string command = $"AT+STACH16=0\r\n";
+                      Global.G_Rel.sendData_TY(command);
+                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine("继电器16重置失败: " + ex.Message);
+                  }*/
+
+                string prefix = "AT+STACH";
+                string suffix = "\r\n";
+                int[] relayNumbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+
+                foreach (int relayNumber in relayNumbers)
+                {
                     try
                     {
-                        string command = $"AT+STACH16=0\r\n";
+                        // 构造指令，确保使用正确的继电器编号
+                        string command = $"{prefix}{relayNumber}=0{suffix}";
                         Global.G_Rel.sendData_TY(command);
                         receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
                     }
                     catch (Exception ex)
                     {
-                       Console.WriteLine("继电器16重置失败: " + ex.Message);
+                        // 记录失败信息，包含继电器编号
+                        Console.WriteLine($"继电器{relayNumber}重置失败: " + ex.Message);
                     }
+                }
             }
         }
 
         //**************************** 页面实时数据 ***************************//
+        private void RealInfo_Tick(object sender, EventArgs e)
+        {
+            real_info();
+        }
         private void real_info()
         {
             if (Global.G_lh.getlh_connected())
             {
-                try
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        // 构造指令，确保使用正确的十六进制值
+                        string command = $"000000000006000300020001";
+                        Global.G_lh.sendData_TY(command);
+                        //receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("发送指令失败: " + ex.Message);
+                    }
+
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        string responseText = string.Empty;
+                        byte[] responseBytes = new byte[1024 * 5]; // 根据需要设置合适的大小
+                        bool success = Global.G_lh.getResult_TY(ref responseText, ref responseBytes);
+                        if (success)
+                        {
+                            //receivingBox.Items.Add($"{DateTime.Now} 接收命令: " + responseText);
+                            string temp2 = responseText.Substring(18, 4);
+                            int decimalValue = HexStringToDecimal(temp2);
+                            double result = decimalValue / 100.0;
+                            Temp_label2.Text = result.ToString("F2");
+
+                            //判断阈值
+                            if (result > 52 && result < 0)
+                            {
+                                MessageBox.Show("温度异常！");
+                            }
+                        }
+                    });
+                });
+
+                /*try
                 {
                     // 构造指令，确保使用正确的十六进制值
                     string command = $"000000000006000300020001";
                     Global.G_lh.sendData_TY(command);
-                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                    //receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
                 }
                 catch (Exception ex)
                 {
@@ -1545,7 +1353,7 @@ namespace BFS
                 bool success = Global.G_lh.getResult_TY(ref responseText, ref responseBytes);
                 if (success)
                 {
-                    receivingBox.Items.Add($"{DateTime.Now} 接收命令: " + responseText);
+                    //receivingBox.Items.Add($"{DateTime.Now} 接收命令: " + responseText);
                     string temp2 = responseText.Substring(18, 4);
                     int decimalValue = HexStringToDecimal(temp2);
                     double result = decimalValue / 100.0;
@@ -1556,18 +1364,63 @@ namespace BFS
                     {
                         MessageBox.Show("温度异常！");
                     }
-                }
+                }*/
             }
 
             if (Global.G_Power.getPow_connected())
             {
-                try
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        // 构造指令，确保使用正确的十六进制值
+                        //00104006400023014
+                        string command = $"0104006400023014";
+                        Global.G_Power.sendData_TY(command);
+                        //receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("发送指令失败: " + ex.Message);
+                    }
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        string responseText = string.Empty;
+                        byte[] responseBytes = new byte[1024 * 5]; // 根据需要设置合适的大小
+                        bool success = Global.G_Power.getResult_TY(ref responseText, ref responseBytes);
+                        if (success)
+                        {
+                            //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
+                            //索引 7 开始提取 4 个字符长度
+                            string Pow_Vol = responseText.Substring(6, 4);
+                            //将十六进制字符串 转换为十进制整数
+                            int pow_vol = Convert.ToInt32(Pow_Vol, 16);
+                            //将十进制数除以 100 并保留两位小数
+                            double result = pow_vol / 10.0;
+                            //F2 格式化为两位小数
+                            string Pow_Vol_Result = result.ToString("F2");
+
+                            // 更新 UI 控件
+                            vol_label4.Text = Pow_Vol_Result;
+                            // 打印结果
+                           // Console.WriteLine("数据为：" + Pow_Vol_Result);
+
+                            string Pow_Ele = responseText.Substring(10, 4);
+                            int pow_ele = Convert.ToInt32(Pow_Ele, 16);
+                            double result2 = pow_ele / 100.0;
+                            string Pow_Ele_Result = result2.ToString("F2");
+                            Elec_label4.Text = Pow_Ele_Result;
+                           // Console.WriteLine("数据为：" + Pow_Ele_Result);
+                        }
+                    });
+                });
+                /*try
                 {
                     // 构造指令，确保使用正确的十六进制值
                     //00104006400023014
                     string command = $"0104006400023014";
                     Global.G_Power.sendData_TY(command);
-                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+                    //receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
                 }
                 catch (Exception ex)
                 {
@@ -1579,7 +1432,7 @@ namespace BFS
                 bool success = Global.G_Power.getResult_TY(ref responseText, ref responseBytes);
                 if (success)
                 {
-                    receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
+                    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
                     //索引 7 开始提取 4 个字符长度
                     string Pow_Vol = responseText.Substring(6, 4);
                     //将十六进制字符串 转换为十进制整数
@@ -1600,8 +1453,78 @@ namespace BFS
                     string Pow_Ele_Result = result2.ToString("F2");
                     Elec_label4.Text = Pow_Ele_Result;
                     Console.WriteLine("数据为：" + Pow_Ele_Result);
-                }
+                }*/
             }
         }
+
+        /************************* 分段式功率 *******************/
+        private void PowerSegment_Tick(object sender, EventArgs e)
+        {
+            switch (currentIndex)
+            {
+                case 1:
+                    if (power_1.Text != "0.0") 
+                    {
+                        PowerSegment_sent1();
+                    }
+                    break;
+                case 2:
+                    if (power_1.Text != "0.0")
+                    {
+                        PowerSegment_sent2();
+                    }
+                    break;
+                case 3:
+                    if (power_1.Text != "0.0")
+                    {
+                        PowerSegment_sent3();
+                    }
+                    break;
+                case 4:
+                    if (power_1.Text != "0.0")
+                    {
+                        PowerSegment_sent4();
+                        //currentIndex = 1; 
+                    }
+                    break;
+                default:
+                    break;
+            }
+            // 更新 currentIndex 以准备下一次调用  
+            currentIndex++;
+            if (currentIndex > 4)
+            {
+                currentIndex = 1; 
+            }
+        }
+
+        private void PowerSegment_sent1() 
+        {
+            string power = "STATic:CP:LEVel " + power_1.Text;
+            string P_data = power + "\r\n";
+            Global.G_ELe.sendData_TY(P_data);
+        }
+
+        private void PowerSegment_sent2()
+        {
+            string power2 = "STATic:CP:LEVel " + power_2.Text;
+            string P_data2 = power2 + "\r\n";
+            Global.G_ELe.sendData_TY(P_data2);
+        }
+
+        private void PowerSegment_sent3()
+        {
+            string power3 = "STATic:CP:LEVel " + power_3.Text;
+            string P_data3 = power3 + "\r\n";
+            Global.G_ELe.sendData_TY(P_data3);
+        }
+
+        private void PowerSegment_sent4()
+        {
+            string power4 = "STATic:CP:LEVel " + power_4.Text;
+            string P_data4 = power4 + "\r\n";
+            Global.G_ELe.sendData_TY(P_data4);
+        }
+
     }
 }

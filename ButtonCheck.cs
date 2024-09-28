@@ -15,9 +15,15 @@ namespace BFS
         //是否选中
         bool isCheck = true;
 
+        // 文本内容
+        private string text = "Check";
+
         public enum CheckStyle
         {
-            style1 = 0
+            style1 = 0,
+            style2 = 1,
+            style3 = 2
+
         };
         public ButtonCheck()
         {
@@ -60,6 +66,16 @@ namespace BFS
             {
                 bitMapOn = Properties.Resources._8;
                 bitMapOff = Properties.Resources._6;
+            }
+            else if(checkStyle == CheckStyle.style2) 
+            {
+                bitMapOn = Properties.Resources.open;
+                bitMapOff = Properties.Resources.close;
+            }
+            else if (checkStyle == CheckStyle.style3)
+            {
+                bitMapOn = Properties.Resources.open_2;
+                bitMapOff = Properties.Resources.close_2;
             }
 
             Graphics g = e.Graphics;

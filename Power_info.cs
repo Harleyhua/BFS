@@ -351,7 +351,7 @@ namespace BFS
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("发送指令失败: " + ex.Message);
+                    MessageBox.Show("发送指令失败: " + ex.Message);
                 }
 
                 string responseText = string.Empty;
@@ -399,6 +399,40 @@ namespace BFS
                         if (responseText == command2)
                         {
                             MessageBox.Show("启动设置成功！");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("发送指令失败: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("网络串口未打开，请先连接串口！");
+            }
+        }
+
+        private void OFF_btn_Click(object sender, EventArgs e)
+        {
+            if (Global.G_Power.getPow_connected())
+            {
+                try
+                {
+                    string command = $"010500850000DC23";
+                    Global.G_Power.sendData_TY(command);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
+
+                    string responseText = string.Empty;
+                    byte[] responseBytes = new byte[1024 * 5]; // 根据需要设置合适的大小
+                    bool success = Global.G_Power.getResult_TY(ref responseText, ref responseBytes);
+                    receivingBox.Items.Add($"{DateTime.Now} 接收命令: " + responseText);
+                    if (success)
+                    {
+                        string command2 = $"01050085ff009dd3";
+                        if (responseText == command2)
+                        {
+                            MessageBox.Show("关闭万瑞达电源成功！");
                         }
                     }
                 }

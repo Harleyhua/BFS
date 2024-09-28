@@ -57,14 +57,44 @@ namespace BFS
             pairT1.value = "17072";
             sysini.Add(pairT1);
 
+            pairT1.key = "Ele_Power_Status";
+            pairT1.value = "OFF";
+            sysini.Add(pairT1);
             pairT1.key = "Ele_Power";
             pairT1.value = "0.0";
+            sysini.Add(pairT1);
+
+            pairT1.key = "Ele_Power_1";
+            pairT1.value = "0.0";
+            sysini.Add(pairT1);
+            pairT1.key = "Ele_Power_2";
+            pairT1.value = "0.0";
+            sysini.Add(pairT1);
+            pairT1.key = "Ele_Power_3";
+            pairT1.value = "0.0";
+            sysini.Add(pairT1);
+            pairT1.key = "Ele_Power_4";
+            pairT1.value = "0.0";
+            sysini.Add(pairT1);
+            pairT1.key = "Ele_Power_5";
+            pairT1.value = "0.0";
+            sysini.Add(pairT1);
+
+
+            pairT1.key = "Ele_Vol_Status";
+            pairT1.value = "OFF";
             sysini.Add(pairT1);
             pairT1.key = "Ele_Vol";
             pairT1.value = "0.0";
             sysini.Add(pairT1);
+            pairT1.key = "Ele_Ele_Status";
+            pairT1.value = "OFF";
+            sysini.Add(pairT1);
             pairT1.key = "Ele_Ele";
             pairT1.value = "0.0";
+            sysini.Add(pairT1);
+            pairT1.key = "Ele_Resis_Status";
+            pairT1.value = "OFF";
             sysini.Add(pairT1);
             pairT1.key = "Ele_Resis";
             pairT1.value = "0.0";
