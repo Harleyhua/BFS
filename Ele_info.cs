@@ -7,6 +7,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -62,69 +63,47 @@ namespace BFS
             }
             connect.Enabled = false;
 
-            // 重置 client 对象
-            client = new TcpClient();
+            Global.G_ELe.connect_TCP();
+            receivingBox.Items.Add($"{DateTime.Now} 电子负载已连接！");
 
-            if (Global.G_ELe.getEle_connected())
+            if (Connect_Way.Text == "TCP网络" && HostAdress.Text != "10.10.106.240")
             {
-                receivingBox.Items.Add("Connect");
-                networkStream = client.GetStream();
-                connect.Enabled = false;
-            }
-            else
-            {
-                if (Connect_Way.Text == "TCP网络")
+                if (string.IsNullOrEmpty(HostAdress.Text) || string.IsNullOrEmpty(hostPort.Text))
                 {
-                    if (string.IsNullOrEmpty(HostAdress.Text) || string.IsNullOrEmpty(hostPort.Text))
-                    {
-                        MessageBox.Show("地址或端口不能为空！");
-                        return;
-                    }
-
-                    try
-                    {
-                        client.Connect(HostAdress.Text, int.Parse(hostPort.Text));
-                        networkStream = client.GetStream();
-                        connect.Enabled = false;
-                        disconnect.Enabled = true;
-                        //receivingBox.Items.Add("连接成功");
-                        Print("连接成功");
-
-
-                        //触发保存地址(配置文件)
-                        Global.sysini.Updata_Value("Ele_IP", this.HostAdress.Text);
-                        Global.sysini.Updata_Value("Ele_Port", this.hostPort.Text);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("连接失败: " + ex.Message);
-                    }
+                    MessageBox.Show("地址或端口不能为空！");
+                    return;
                 }
+
+                try
+                {
+                    client.Connect(HostAdress.Text, int.Parse(hostPort.Text));
+                    networkStream = client.GetStream();
+                    connect.Enabled = false;
+                    disconnect.Enabled = true;
+                    //receivingBox.Items.Add("连接成功");
+                    //Print("连接成功");
+                    receivingBox.Items.Add($"{DateTime.Now} 电子负载已连接！");
+
+
+                    //触发保存地址(配置文件)
+                    Global.sysini.Updata_Value("Ele_IP", this.HostAdress.Text);
+                    Global.sysini.Updata_Value("Ele_Port", this.hostPort.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("连接失败: " + ex.Message);
+                }
+                
             }
         }
 
         private void disconnect_Click_1(object sender, EventArgs e)
         {
-            try
+            if (Global.G_ELe.getEle_connected())
             {
-                if (networkStream != null)
-                    networkStream.Close();
-                if (client != null)
-                    client.Close();
-                MessageBox.Show("串口已断开");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("断开连接时出错: " + ex.Message);
-            }
-            finally
-            {
+                Global.G_ELe.Disconnect_Type();
                 connect.Enabled = true;
-                disconnect.Enabled = false;
-                Global.G_ELe.disconnect_TCP();
-                //receivingBox.Items.Add("已断开连接");
-                Print("已断开连接");
-                isReceiving = false;
+                receivingBox.Items.Add($"{DateTime.Now} 电子负载连接已断开！");
             }
         }
 
@@ -565,7 +544,7 @@ namespace BFS
                 {
                     try
                     {
-                        string resistan = "STATic:CR:LOW:LEVel " + Resis_Box.Text;
+                        string resistan = "STATic:CR:HIGH:LEVel " + Resis_Box.Text;
                         string R_data = resistan + "\r\n";
                         Global.G_ELe.sendData_TY(R_data);
                         receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
@@ -637,10 +616,10 @@ namespace BFS
             {
                 try
                 {
-                    string resistan = "INPut:FUNCtion CP";
-                    string R_data = resistan + "\r\n";
-                    Global.G_ELe.sendData_TY(R_data);
-                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
+                    string power = "INPut:FUNCtion CP";
+                    string P_data = power + "\r\n";
+                    Global.G_ELe.sendData_TY(P_data);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + power);
                     //MessageBox.Show("恒功率模式设置成功！");
                 }
                 catch (Exception ex)
@@ -660,10 +639,10 @@ namespace BFS
             {
                 try
                 {
-                    string resistan = "INPut:FUNCtion CV";
-                    string R_data = resistan + "\r\n";
-                    Global.G_ELe.sendData_TY(R_data);
-                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
+                    string vol = "INPut:FUNCtion CV";
+                    string V_data = vol + "\r\n";
+                    Global.G_ELe.sendData_TY(V_data);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + vol);
                     //MessageBox.Show("恒功率模式设置成功！");
                 }
                 catch (Exception ex)
@@ -683,10 +662,10 @@ namespace BFS
             {
                 try
                 {
-                    string resistan = "INPut:FUNCtion CC";
-                    string R_data = resistan + "\r\n";
-                    Global.G_ELe.sendData_TY(R_data);
-                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
+                    string ele = "INPut:FUNCtion CC";
+                    string E_data = ele + "\r\n";
+                    Global.G_ELe.sendData_TY(E_data);
+                    receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + ele);
                     //MessageBox.Show("恒功率模式设置成功！");
                 }
                 catch (Exception ex)

@@ -66,43 +66,42 @@ namespace BFS
             // 重置 client 对象
             client = new TcpClient();
 
-            if (Global.G_lh.getlh_connected())
+            Global.G_lh.connect_TCP();
+            receivingBox.Items.Add($"{DateTime.Now} 老化柜已连接！");
+
+            //网口通讯：端口号502
+            if (Connect_Way.Text == "TCP网络" && HostAdress.Text != "10.10.106.242")
             {
-                receivingBox.Items.Add("Connect");
-                networkStream = client.GetStream();
-                connect.Enabled = false;
-            }
-            else
-            {
-                connect.Enabled = true;
-                //网口通讯：端口号502
-                if (Connect_Way.Text == "TCP网络")
+                if (string.IsNullOrEmpty(HostAdress.Text) || string.IsNullOrEmpty(hostPort.Text))
                 {
-                    if (string.IsNullOrEmpty(HostAdress.Text) || string.IsNullOrEmpty(hostPort.Text))
-                    {
-                        MessageBox.Show("地址或端口不能为空！");
-                        return;
-                    }
+                    MessageBox.Show("地址或端口不能为空！");
+                    return;
+                }
 
-                    try
-                    {
-                        Global.G_lh.connect_Type();
+                try
+                {
+                    Global.G_lh.connect_Type();
 
-                        //触发保存地址(配置文件)
-                        Global.sysini.Updata_Value("Room_IP", this.HostAdress.Text);
-                        Global.sysini.Updata_Value("Room_Port", this.hostPort.Text);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("连接失败: " + ex.Message);
-                    }
+                    //触发保存地址(配置文件)
+                    Global.sysini.Updata_Value("Room_IP", this.HostAdress.Text);
+                    Global.sysini.Updata_Value("Room_Port", this.hostPort.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("连接失败: " + ex.Message);
                 }
             }
+            
         }
 
         private void disconnect_Click(object sender, EventArgs e)
         {
-
+            if (Global.G_lh.getlh_connected())
+            {
+                Global.G_lh.Disconnect_Type();
+                connect.Enabled = true;
+                receivingBox.Items.Add($"{DateTime.Now} 老化柜连接已断开！");
+            }
         }
 
         private void Sent_Click(object sender, EventArgs e)

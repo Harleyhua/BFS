@@ -33,6 +33,8 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.info_Control = new System.Windows.Forms.TabControl();
             this.lh_Page = new System.Windows.Forms.TabPage();
+            this.Recon_btn = new System.Windows.Forms.Button();
+            this.HeadStop_btn = new System.Windows.Forms.Button();
             this.ele_groupBox = new System.Windows.Forms.GroupBox();
             this.ele_lb9 = new System.Windows.Forms.Label();
             this.ele_lb8 = new System.Windows.Forms.Label();
@@ -52,6 +54,8 @@
             this.Argument_btn = new System.Windows.Forms.Button();
             this.Set_Time_btn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lh_label = new System.Windows.Forms.Label();
             this.power_4 = new System.Windows.Forms.Label();
             this.power_3 = new System.Windows.Forms.Label();
             this.power_2 = new System.Windows.Forms.Label();
@@ -168,6 +172,8 @@
             // 
             // lh_Page
             // 
+            this.lh_Page.Controls.Add(this.Recon_btn);
+            this.lh_Page.Controls.Add(this.HeadStop_btn);
             this.lh_Page.Controls.Add(this.ele_groupBox);
             this.lh_Page.Controls.Add(this.groupBox2);
             this.lh_Page.Controls.Add(this.progressBar_time);
@@ -191,6 +197,30 @@
             this.lh_Page.TabIndex = 1;
             this.lh_Page.Text = "老化详细界面";
             this.lh_Page.UseVisualStyleBackColor = true;
+            // 
+            // Recon_btn
+            // 
+            this.Recon_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Recon_btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Recon_btn.Location = new System.Drawing.Point(812, 137);
+            this.Recon_btn.Name = "Recon_btn";
+            this.Recon_btn.Size = new System.Drawing.Size(84, 31);
+            this.Recon_btn.TabIndex = 116;
+            this.Recon_btn.Text = "设备重载";
+            this.Recon_btn.UseVisualStyleBackColor = true;
+            this.Recon_btn.Click += new System.EventHandler(this.Recon_btn_Click);
+            // 
+            // HeadStop_btn
+            // 
+            this.HeadStop_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HeadStop_btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.HeadStop_btn.Location = new System.Drawing.Point(812, 49);
+            this.HeadStop_btn.Name = "HeadStop_btn";
+            this.HeadStop_btn.Size = new System.Drawing.Size(84, 31);
+            this.HeadStop_btn.TabIndex = 115;
+            this.HeadStop_btn.Text = "手动停止";
+            this.HeadStop_btn.UseVisualStyleBackColor = true;
+            this.HeadStop_btn.Click += new System.EventHandler(this.HeadStop_btn_Click);
             // 
             // ele_groupBox
             // 
@@ -344,7 +374,7 @@
             // 
             this.beging_lh_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.beging_lh_btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.beging_lh_btn.Location = new System.Drawing.Point(792, 93);
+            this.beging_lh_btn.Location = new System.Drawing.Point(663, 158);
             this.beging_lh_btn.Name = "beging_lh_btn";
             this.beging_lh_btn.Size = new System.Drawing.Size(84, 31);
             this.beging_lh_btn.TabIndex = 109;
@@ -356,7 +386,7 @@
             // 
             this.Argument_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Argument_btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Argument_btn.Location = new System.Drawing.Point(792, 159);
+            this.Argument_btn.Location = new System.Drawing.Point(663, 91);
             this.Argument_btn.Name = "Argument_btn";
             this.Argument_btn.Size = new System.Drawing.Size(84, 31);
             this.Argument_btn.TabIndex = 108;
@@ -368,7 +398,7 @@
             // 
             this.Set_Time_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Set_Time_btn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Set_Time_btn.Location = new System.Drawing.Point(792, 24);
+            this.Set_Time_btn.Location = new System.Drawing.Point(663, 24);
             this.Set_Time_btn.Name = "Set_Time_btn";
             this.Set_Time_btn.Size = new System.Drawing.Size(84, 31);
             this.Set_Time_btn.TabIndex = 107;
@@ -379,6 +409,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.lh_label);
             this.groupBox1.Controls.Add(this.power_4);
             this.groupBox1.Controls.Add(this.power_3);
             this.groupBox1.Controls.Add(this.power_2);
@@ -395,6 +427,26 @@
             this.groupBox1.Size = new System.Drawing.Size(878, 292);
             this.groupBox1.TabIndex = 106;
             this.groupBox1.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label12.Location = new System.Drawing.Point(407, 20);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(78, 21);
+            this.label12.TabIndex = 121;
+            this.label12.Text = "老化时长:";
+            // 
+            // lh_label
+            // 
+            this.lh_label.AutoSize = true;
+            this.lh_label.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lh_label.Location = new System.Drawing.Point(489, 20);
+            this.lh_label.Name = "lh_label";
+            this.lh_label.Size = new System.Drawing.Size(72, 21);
+            this.lh_label.TabIndex = 120;
+            this.lh_label.Text = "00:00:00";
             // 
             // power_4
             // 
@@ -446,11 +498,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(364, 20);
+            this.label5.Location = new System.Drawing.Point(641, 19);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 21);
+            this.label5.Size = new System.Drawing.Size(110, 21);
             this.label5.TabIndex = 112;
-            this.label5.Text = "老化时长:";
+            this.label5.Text = "老化剩余时长:";
             // 
             // groupBox6
             // 
@@ -883,7 +935,7 @@
             // 
             this.count_down.AutoSize = true;
             this.count_down.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.count_down.Location = new System.Drawing.Point(446, 20);
+            this.count_down.Location = new System.Drawing.Point(757, 18);
             this.count_down.Name = "count_down";
             this.count_down.Size = new System.Drawing.Size(72, 21);
             this.count_down.TabIndex = 111;
@@ -1410,6 +1462,10 @@
         private System.Windows.Forms.Label power_2;
         private System.Windows.Forms.Timer Segment_timer;
         private System.Windows.Forms.Timer Ele_timer;
+        private System.Windows.Forms.Button HeadStop_btn;
+        private System.Windows.Forms.Button Recon_btn;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lh_label;
     }
 }
 

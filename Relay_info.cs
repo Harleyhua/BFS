@@ -62,62 +62,44 @@ namespace BFS
             // 重置 client 对象
             client = new TcpClient();
 
-            if (Global.G_ELe.getEle_connected())
+            Global.G_Rel.connect_TCP();
+            receivingBox.Items.Add($"{DateTime.Now} 继电器已连接！");
+
+            if (Connect_Way.Text == "TCP网络" && HostAdress.Text != "10.10.106.241")
             {
-                receivingBox.Items.Add("Connect");
-                networkStream = client.GetStream();
-                connect.Enabled = false;
-            }
-            else
-            {
-                if (Connect_Way.Text == "TCP网络")
+                if (string.IsNullOrEmpty(HostAdress.Text) || string.IsNullOrEmpty(hostPort.Text))
                 {
-                    if (string.IsNullOrEmpty(HostAdress.Text) || string.IsNullOrEmpty(hostPort.Text))
-                    {
-                        MessageBox.Show("地址或端口不能为空！");
-                        return;
-                    }
-
-                    try
-                    {
-                        client.Connect(HostAdress.Text, int.Parse(hostPort.Text));
-                        networkStream = client.GetStream();
-                        connect.Enabled = false;
-                        disconnect.Enabled = true;
-                        Print("连接成功");
-
-                        //触发保存地址(配置文件)
-                        Global.sysini.Updata_Value("Relay_IP", this.HostAdress.Text);
-                        Global.sysini.Updata_Value("Relay_Port", this.hostPort.Text);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("连接失败: " + ex.Message);
-                    }
+                    MessageBox.Show("地址或端口不能为空！");
+                    return;
                 }
+
+                try
+                {
+                    client.Connect(HostAdress.Text, int.Parse(hostPort.Text));
+                    networkStream = client.GetStream();
+                    connect.Enabled = false;
+                    disconnect.Enabled = true;
+                    receivingBox.Items.Add($"{DateTime.Now} 继电器已连接！");
+
+                    //触发保存地址(配置文件)
+                    Global.sysini.Updata_Value("Relay_IP", this.HostAdress.Text);
+                    Global.sysini.Updata_Value("Relay_Port", this.hostPort.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("连接失败: " + ex.Message);
+                }
+                
             }
         }
 
         private void disconnect_Click(object sender, EventArgs e)
         {
-            try
+            if (Global.G_Rel.getRelay_connected())
             {
-                if (networkStream != null)
-                    networkStream.Close();
-                if (client != null)
-                    client.Close();
-                Print("串口已断开");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("断开连接时出错: " + ex.Message);
-            }
-            finally
-            {
+                Global.G_Rel.Disconnect_Type();
                 connect.Enabled = true;
-                disconnect.Enabled = false;
-                Print("已断开连接");
-                isReceiving = false;
+                receivingBox.Items.Add($"{DateTime.Now} 继电器连接已断开!");
             }
         }
 

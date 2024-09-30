@@ -133,12 +133,37 @@ namespace BFS
 
         }
 
+        public bool Reconnect_TCP()
+        {
+            try
+            {
+                if (Ele_client.Connected)
+                {
+                    disconnect_TCP();
+                }
+
+                connect_TCP();
+            }
+            catch (Exception e)
+            {
+                Ele_err = -21;
+                Console.WriteLine("重连接失败：" + e.ToString());
+
+                // 等待一段时间后重试，例如等待1秒
+                System.Threading.Thread.Sleep(1000);
+            }
+
+            return false; // 所有尝试都失败后，返回false
+        }
+
         //断开服务器
         public bool disconnect_TCP()
         {
             Ele_client.Close();
             return true;
         }
+
+
 
         //发送数据
         public bool sendData_TY(string data_text)

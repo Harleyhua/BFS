@@ -3,44 +3,44 @@
   "WorkspaceRootPath": "E:\\git\\BFS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|e:\\git\\bfs\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\relay_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:relay_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\relay_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:relay_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\power_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:power_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|e:\\git\\bfs\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\relay_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:relay_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:ele_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\power_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:power_info.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|E:\\git\\BFS\\lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5001D271-E97D-4523-81EC-1C2D1FE3D244}|BFS.csproj|solutionrelative:lh_room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,88 +50,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "E:\\git\\BFS\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "E:\\git\\BFS\\Form1.cs",
-              "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAANYCAAAAAAAAAAAqwNoCAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-20T12:17:39.713Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Power_info.cs [\u8BBE\u8BA1]",
-              "DocumentMoniker": "E:\\git\\BFS\\Power_info.cs",
-              "RelativeDocumentMoniker": "Power_info.cs",
-              "ToolTip": "E:\\git\\BFS\\Power_info.cs [\u8BBE\u8BA1]",
-              "RelativeToolTip": "Power_info.cs [\u8BBE\u8BA1]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-31T02:09:09.421Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Power_info.cs",
-              "DocumentMoniker": "E:\\git\\BFS\\Power_info.cs",
-              "RelativeDocumentMoniker": "Power_info.cs",
-              "ToolTip": "E:\\git\\BFS\\Power_info.cs",
-              "RelativeToolTip": "Power_info.cs",
-              "ViewState": "AQIAAJ8BAAAAAAAAAAA9wL4BAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T06:45:43.878Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "lh_room.cs [\u8BBE\u8BA1]",
-              "DocumentMoniker": "E:\\git\\BFS\\lh_room.cs",
-              "RelativeDocumentMoniker": "lh_room.cs",
-              "ToolTip": "E:\\git\\BFS\\lh_room.cs [\u8BBE\u8BA1]",
-              "RelativeToolTip": "lh_room.cs [\u8BBE\u8BA1]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T06:14:16.755Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "lh_room.cs",
-              "DocumentMoniker": "E:\\git\\BFS\\lh_room.cs",
-              "RelativeDocumentMoniker": "lh_room.cs",
-              "ToolTip": "E:\\git\\BFS\\lh_room.cs",
-              "RelativeToolTip": "lh_room.cs",
-              "ViewState": "AQIAAAwCAAAAAAAAAAAIwBQCAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T06:14:28.508Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Ele_info.cs [\u8BBE\u8BA1]",
-              "DocumentMoniker": "E:\\git\\BFS\\Ele_info.cs",
-              "RelativeDocumentMoniker": "Ele_info.cs",
-              "ToolTip": "E:\\git\\BFS\\Ele_info.cs [\u8BBE\u8BA1]",
-              "RelativeToolTip": "Ele_info.cs [\u8BBE\u8BA1]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-18T12:27:13.095Z",
-              "EditorCaption": " [\u8BBE\u8BA1]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Ele_info.cs",
               "DocumentMoniker": "E:\\git\\BFS\\Ele_info.cs",
               "RelativeDocumentMoniker": "Ele_info.cs",
               "ToolTip": "E:\\git\\BFS\\Ele_info.cs",
               "RelativeToolTip": "Ele_info.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAADwv2MCAAANAAAA",
+              "ViewState": "AQIAAEkCAAAAAAAAAAAWwEkCAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-18T12:30:35.633Z",
               "EditorCaption": ""
@@ -139,6 +68,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Relay_info.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "E:\\git\\BFS\\Relay_info.cs",
+              "RelativeDocumentMoniker": "Relay_info.cs",
+              "ToolTip": "E:\\git\\BFS\\Relay_info.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "Relay_info.cs [\u8BBE\u8BA1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-18T08:46:01.549Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Relay_info.cs",
+              "DocumentMoniker": "E:\\git\\BFS\\Relay_info.cs",
+              "RelativeDocumentMoniker": "Relay_info.cs",
+              "ToolTip": "E:\\git\\BFS\\Relay_info.cs",
+              "RelativeToolTip": "Relay_info.cs",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAIwFsAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T03:23:00.469Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Form1.cs [\u8BBE\u8BA1]",
               "DocumentMoniker": "E:\\git\\BFS\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
@@ -151,25 +105,77 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Relay_info.cs [\u8BBE\u8BA1]",
-              "DocumentMoniker": "E:\\git\\BFS\\Relay_info.cs",
-              "RelativeDocumentMoniker": "Relay_info.cs",
-              "ToolTip": "E:\\git\\BFS\\Relay_info.cs [\u8BBE\u8BA1]",
-              "RelativeToolTip": "Relay_info.cs [\u8BBE\u8BA1]",
+              "Title": "Ele_info.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "E:\\git\\BFS\\Ele_info.cs",
+              "RelativeDocumentMoniker": "Ele_info.cs",
+              "ToolTip": "E:\\git\\BFS\\Ele_info.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "Ele_info.cs [\u8BBE\u8BA1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-18T08:46:01.549Z"
+              "WhenOpened": "2024-09-18T12:27:13.095Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Relay_info.cs",
-              "DocumentMoniker": "E:\\git\\BFS\\Relay_info.cs",
-              "RelativeDocumentMoniker": "Relay_info.cs",
-              "ToolTip": "E:\\git\\BFS\\Relay_info.cs",
-              "RelativeToolTip": "Relay_info.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAANwAAAAMAAAA",
+              "Title": "Power_info.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "E:\\git\\BFS\\Power_info.cs",
+              "RelativeDocumentMoniker": "Power_info.cs",
+              "ToolTip": "E:\\git\\BFS\\Power_info.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "Power_info.cs [\u8BBE\u8BA1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T03:23:00.469Z"
+              "WhenOpened": "2024-07-31T02:09:09.421Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "E:\\git\\BFS\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "E:\\git\\BFS\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAHEAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T12:17:39.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "lh_room.cs",
+              "DocumentMoniker": "E:\\git\\BFS\\lh_room.cs",
+              "RelativeDocumentMoniker": "lh_room.cs",
+              "ToolTip": "E:\\git\\BFS\\lh_room.cs",
+              "RelativeToolTip": "lh_room.cs",
+              "ViewState": "AQIAAE8AAAAAAAAAAAAIwGYAAABEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T06:14:28.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "lh_room.cs [\u8BBE\u8BA1]",
+              "DocumentMoniker": "E:\\git\\BFS\\lh_room.cs",
+              "RelativeDocumentMoniker": "lh_room.cs",
+              "ToolTip": "E:\\git\\BFS\\lh_room.cs [\u8BBE\u8BA1]",
+              "RelativeToolTip": "lh_room.cs [\u8BBE\u8BA1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T06:14:16.755Z",
+              "EditorCaption": " [\u8BBE\u8BA1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Power_info.cs",
+              "DocumentMoniker": "E:\\git\\BFS\\Power_info.cs",
+              "RelativeDocumentMoniker": "Power_info.cs",
+              "ToolTip": "E:\\git\\BFS\\Power_info.cs",
+              "RelativeToolTip": "Power_info.cs",
+              "ViewState": "AQIAAFMBAAAAAAAAAAAuwGcAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T06:45:43.878Z",
+              "EditorCaption": ""
             }
           ]
         }

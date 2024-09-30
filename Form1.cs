@@ -54,7 +54,8 @@ namespace BFS
             Power_timer = new Timer();
             Power_timer.Interval = 10000; // 设置间隔为 10000 毫秒（10秒）  
             Power_timer.Tick += PowerSegment_Tick; // 绑定 Tick 事件  
-                                                   //Power_timer.Start();
+            //Power_timer.Start();
+
             //获取电子负载实时数据
             Ele_timer = new Timer();
             Ele_timer.Interval = 10000; // 设置间隔为 10000 毫秒（10秒）  
@@ -64,13 +65,6 @@ namespace BFS
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //info = new Info();
-            //info.Dock = DockStyle.Fill;
-            //OpenFrom(info, this.info_Page);
-            //room = new lh_room();
-            //room.Dock = DockStyle.Fill;
-            //OpenFrom(room, this.room_Page);
-
             Ele_connection();
             Power_connection();
             lh_connection();
@@ -88,54 +82,86 @@ namespace BFS
             if ( ele_pow_staus == "ON" ) 
             {
                 ele_groupBox.Text = "恒功率模式";
-                ele_lb1.Text = "电压：";
+                ele_lb1.Text = "恒电压：";
                 ele_lb2.Text = "0.0";
                 ele_lb3.Text = "V";
-                ele_lb4.Text = "电流："; 
+                ele_lb4.Text = "恒电流："; 
                 ele_lb5.Text = "0.0";
                 ele_lb6.Text = "A";
-                ele_lb7.Text = "电阻：";
+                ele_lb7.Text = "恒功率：";
                 ele_lb8.Text = "0.0";
-                ele_lb9.Text = "Ω";
+                ele_lb9.Text = "W";
+                //ele_lb7.Text = "电阻：";
+                //ele_lb8.Text = "0.0";
+                //ele_lb9.Text = "Ω";
             }
             if (ele_vol_staus == "ON")
             {
                 ele_groupBox.Text = "恒电压模式";
-                ele_lb1.Text = "功率：";
+                ele_lb1.Text = "恒电压：";
                 ele_lb2.Text = "0.0";
-                ele_lb3.Text = "W";
-                ele_lb4.Text = "电流：";
+                ele_lb3.Text = "V";
+                ele_lb4.Text = "恒电流：";
                 ele_lb5.Text = "0.0";
                 ele_lb6.Text = "A";
-                ele_lb7.Text = "电阻：";
+                ele_lb7.Text = "恒功率：";
                 ele_lb8.Text = "0.0";
-                ele_lb9.Text = "Ω";
+                ele_lb9.Text = "W";
+                //ele_lb1.Text = "功率：";
+                //ele_lb2.Text = "0.0";
+                //ele_lb3.Text = "W";
+                //ele_lb4.Text = "电流：";
+                //ele_lb5.Text = "0.0";
+                //ele_lb6.Text = "A";
+                //ele_lb7.Text = "电阻：";
+                //ele_lb8.Text = "0.0";
+                //ele_lb9.Text = "Ω";
             }
             if (ele_ele_staus == "ON")
             {
                 ele_groupBox.Text = "恒电流模式";
-                ele_lb1.Text = "功率：";
+                ele_lb1.Text = "恒电压：";
                 ele_lb2.Text = "0.0";
-                ele_lb3.Text = "W";
-                ele_lb4.Text = "电压：";
+                ele_lb3.Text = "V";
+                ele_lb4.Text = "恒电流：";
                 ele_lb5.Text = "0.0";
-                ele_lb6.Text = "V";
-                ele_lb7.Text = "电阻：";
+                ele_lb6.Text = "A";
+                ele_lb7.Text = "恒功率：";
                 ele_lb8.Text = "0.0";
-                ele_lb9.Text = "Ω";
+                ele_lb9.Text = "W";
+                //ele_groupBox.Text = "恒电流模式";
+                //ele_lb1.Text = "功率：";
+                //ele_lb2.Text = "0.0";
+                //ele_lb3.Text = "W";
+                //ele_lb4.Text = "电压：";
+                //ele_lb5.Text = "0.0";
+                //ele_lb6.Text = "V";
+                //ele_lb7.Text = "电阻：";
+                //ele_lb8.Text = "0.0";
+                //ele_lb9.Text = "Ω";
             }
             if (ele_resis_staus == "ON")
             {
                 ele_groupBox.Text = "恒电阻模式";
-                ele_lb1.Text = "功率";
+                ele_lb1.Text = "恒电压：";
                 ele_lb2.Text = "0.0";
-                ele_lb3.Text = "W";
-                ele_lb4.Text = "电压";
+                ele_lb3.Text = "V";
+                ele_lb4.Text = "恒电流：";
                 ele_lb5.Text = "0.0";
-                ele_lb6.Text = "V";
-                ele_lb7.Text = "电流";
+                ele_lb6.Text = "A";
+                ele_lb7.Text = "恒功率：";
                 ele_lb8.Text = "0.0";
-                ele_lb9.Text = "A";
+                ele_lb9.Text = "W";
+                //ele_groupBox.Text = "恒电阻模式";
+                //ele_lb1.Text = "功率";
+                //ele_lb2.Text = "0.0";
+                //ele_lb3.Text = "W";
+                //ele_lb4.Text = "电压";
+                //ele_lb5.Text = "0.0";
+                //ele_lb6.Text = "V";
+                //ele_lb7.Text = "电流";
+                //ele_lb8.Text = "0.0";
+                //ele_lb9.Text = "A";
             }
             pw_label.Text = Global.sysini.Get_Value("Ele_Power");
             power_1.Text = Global.sysini.Get_Value("Ele_Power_1");
@@ -301,14 +327,12 @@ namespace BFS
             if (Global.G_ELe.getEle_connected())
             {
                 Global.G_ELe.Disconnect_Type();
-                receivingBox.Items.Add("Connect");
+                receivingBox.Items.Add("DisConnect");
             }
             else
             {
-                {
-                    Global.G_ELe.connect_TCP();
-                    receivingBox.Items.Add($"{DateTime.Now} 电子负载已连接！");
-                }
+                Global.G_ELe.connect_TCP();
+                receivingBox.Items.Add($"{DateTime.Now} 电子负载已连接！");
             }
         }
 
@@ -318,14 +342,12 @@ namespace BFS
             if (Global.G_Power.getPow_connected())
             {
                 Global.G_Power.Disconnect_Type();
-                receivingBox.Items.Add("Connect");
+                receivingBox.Items.Add("DisConnect");
             }
             else
             {
-                {
-                    Global.G_Power.connect_TCP();
-                    receivingBox.Items.Add($"{DateTime.Now} 万瑞达电源已连接！");
-                }
+                Global.G_Power.connect_TCP();
+                receivingBox.Items.Add($"{DateTime.Now} 万瑞达电源已连接！");
             }
         }
 
@@ -335,14 +357,12 @@ namespace BFS
             if (Global.G_lh.getlh_connected())
             {
                 Global.G_lh.Disconnect_Type();
-                receivingBox.Items.Add("Connect");
+                receivingBox.Items.Add("DisConnect");
             }
             else
             {
-                {
-                    Global.G_lh.connect_TCP();
-                    receivingBox.Items.Add($"{DateTime.Now} 老化柜已连接！");
-                }
+                Global.G_lh.connect_TCP();
+                receivingBox.Items.Add($"{DateTime.Now} 老化柜已连接！");
             }
         }
 
@@ -352,14 +372,12 @@ namespace BFS
             if (Global.G_Rel.getRelay_connected())
             {
                 Global.G_Rel.Disconnect_Type();
-                receivingBox.Items.Add("Connect");
+                receivingBox.Items.Add("DisConnect");
             }
             else
             {
-                {
-                    Global.G_Rel.connect_TCP();
-                    receivingBox.Items.Add($"{DateTime.Now} 继电器已连接！");
-                }
+                Global.G_Rel.connect_TCP();
+                receivingBox.Items.Add($"{DateTime.Now} 继电器已连接！");
             }
         }
 
@@ -372,6 +390,7 @@ namespace BFS
             {
                 countdownTime = time.CountdownTime; // 假设 SelectedTime 返回用户设置的时间
             }
+            lh_label.Text = countdownTime.ToString();
         }
         private void StartCountdown(TimeSpan time)
         {
@@ -433,6 +452,10 @@ namespace BFS
                     UpdateCountdownDisplay(TimeSpan.Zero);
                     progressBar_time.Value = progressBar_time.Maximum; // 进度条达到最大值
 
+                    //老化时间结束重置设备
+                    Reset_device();
+                    //MessageBox.Show("设备重置成功");
+
                     Global.G_Rel.sendData_TY($"AT+STACH4=1\r\n");
                     DialogResult result = MessageBox.Show("老化结束", "操作确认", MessageBoxButtons.OK);
                     if(result == DialogResult.OK) 
@@ -440,11 +463,6 @@ namespace BFS
                         string command = $"AT+STACH4=0\r\n";
                         Global.G_Rel.sendData_TY(command);
                     }
-                    //MessageBox.Show("老化结束！");
-
-                    //老化时间结束重置设备
-                    Reset_device();
-                    MessageBox.Show("设备重置成功");
                 }
             }
             else
@@ -469,7 +487,7 @@ namespace BFS
 
         //************************* 开始老化 **************************//
         //开始老化
-        private void beging_lh_btn_Click(object sender, EventArgs e)
+        private async void beging_lh_btn_Click(object sender, EventArgs e)
         {
             //更新时间
             if (countdownTime == TimeSpan.Zero)
@@ -478,18 +496,18 @@ namespace BFS
                 return;
             }
 
-            //bool result = Ele_lh();
-            bool result = Power_lh();
+            bool result = Relay_lh();
             if (result)
             {
-                //bool result2 = Power_lh();
-                bool result2 = Ele_lh();
+                bool result2 = Power_lh();
                 if (result2)
                 {
-                    bool result3 = Room_lh();
+                    await Task.Delay(30000);
+                    bool result3 = Ele_lh();
                     if (result3)
                     {
-                        bool result4 = Relay_lh();
+
+                        bool result4 = Room_lh();
                         if (result4)
                         {
                             MessageBox.Show("启动老化成功！");
@@ -497,22 +515,25 @@ namespace BFS
                         }
                         else
                         {
-                            MessageBox.Show("继电器老化设置失败！");
+                            MessageBox.Show("老化柜老化启动失败！");
                         }
+
                     }
                     else
                     {
-                        MessageBox.Show("老化柜老化设置失败！");
+                        MessageBox.Show("电子负载老化启动失败！");
                     }
+
                 }
                 else
                 {
-                    MessageBox.Show("电子负载老化失败！");
+                    MessageBox.Show("万瑞达老化启动失败！");
                 }
+
             }
             else
             {
-                MessageBox.Show("万瑞达老化设置失败！");
+                MessageBox.Show("继电器老化启动失败！");
             }
         }
 
@@ -536,7 +557,7 @@ namespace BFS
                         string mode_1 = "INPut:FUNCtion CP";
                         string M_data = mode_1 + "\r\n";
                         Global.G_ELe.sendData_TY(M_data);
-                        receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + M_data);
+                        //receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + M_data);
 
                         //恒功率
                         string power = "STATic:CP:LEVel " + pw_label.Text;
@@ -544,28 +565,12 @@ namespace BFS
                         Global.G_ELe.sendData_TY(P_data);
                         //receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + power);
 
-                        Ele_timer.Start();
+                        //Ele_timer.Start();
 
-                        ////其他参数
-                        //string read_cv = "STATic:CV:HIGH:LEVel?\r\n";
-                        //Global.G_ELe.sendData_TY(read_cv);
-                        //string response_cv = string.Empty;
-                        //byte[] responseBytes_cv = new byte[1024 * 5]; // 根据需要设置合适的大小
-                        //bool success_cv = Global.G_ELe.getResult_TY(ref response_cv, ref responseBytes_cv);
-                        //if (success_cv)
-                        //{
-                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
-                        //    string result = response_cv.Substring(0, 5);
-                        //    ele_lb2.Text = result;
-                        //}
-                        //Read_E_CC();
-                        //Read_E_CR();
-
-                        //Power_timer.Start();
                     }
                     else if (ele_groupBox.Text == "恒电压模式")
                     {
-                        string mode_2 = "INPut:FUNCtion CP";
+                        string mode_2 = "INPut:FUNCtion CV";
                         string M_data = mode_2 + "\r\n";
                         Global.G_ELe.sendData_TY(M_data);
 
@@ -575,23 +580,7 @@ namespace BFS
                         Global.G_ELe.sendData_TY(V_data);
                         receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + voltage);
 
-                        Ele_timer.Start();
-
-                        //其他参数
-                        //string read_cp = "STATic:CP:HIGH:LEVel?\r\n";
-                        //Global.G_ELe.sendData_TY(read_cp);
-                        //string response_cp = string.Empty;
-                        //byte[] responseBytes_cp = new byte[1024 * 5]; // 根据需要设置合适的大小
-                        //bool success_cp = Global.G_ELe.getResult_TY(ref response_cp, ref responseBytes_cp);
-                        //if (success_cp)
-                        //{
-                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
-                        //    string result = response_cp.Substring(0, 5);
-                        //    ele_lb2.Text = result;
-                        //}
-
-                        //Read_E_CC();
-                        //Read_E_CR();
+                        //Ele_timer.Start();
 
                     }
                     else if(ele_groupBox.Text == "恒电流模式") 
@@ -606,37 +595,11 @@ namespace BFS
                         Global.G_ELe.sendData_TY(E_data);
                         receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + electric);
 
-                        Ele_timer.Start();
-
-                        ////其他参数
-                        //string read_cp = "STATic:CP:HIGH:LEVel?\r\n";
-                        //Global.G_ELe.sendData_TY(read_cp);
-                        //string response_cp = string.Empty;
-                        //byte[] responseBytes_cp = new byte[1024 * 5]; // 根据需要设置合适的大小
-                        //bool success_cp = Global.G_ELe.getResult_TY(ref response_cp, ref responseBytes_cp);
-                        //if (success_cp)
-                        //{
-                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
-                        //    string result = response_cp.Substring(0, 5);
-                        //    ele_lb2.Text = result;
-                        //}
-
-                        //string read_cv = "STATic:CV:HIGH:LEVel?\r\n";
-                        //Global.G_ELe.sendData_TY(read_cv);
-                        //string response_cv = string.Empty;
-                        //byte[] responseBytes_cv = new byte[1024 * 5]; // 根据需要设置合适的大小
-                        //bool success_cv = Global.G_ELe.getResult_TY(ref response_cv, ref responseBytes_cv);
-                        //if (success_cv)
-                        //{
-                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
-                        //    string result = response_cv.Substring(0, 5);
-                        //    ele_lb5.Text = result;
-                        //}
-                        //Read_E_CR();
+                        //Ele_timer.Start();
                     }
                     else if(ele_groupBox.Text == "恒电阻模式")
                     {
-                        string mode_4 = "INPut:FUNCtion CC";
+                        string mode_4 = "INPut:FUNCtion CR";
                         string M_data = mode_4 + "\r\n";
                         Global.G_ELe.sendData_TY(M_data);
 
@@ -646,45 +609,7 @@ namespace BFS
                         Global.G_ELe.sendData_TY(R_data);
                         receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + resistan);
 
-                        Ele_timer.Start();
-
-                        ////其他参数
-                        //string read_cp = "STATic:CP:HIGH:LEVel?\r\n";
-                        //Global.G_ELe.sendData_TY(read_cp);
-                        //string response_cp = string.Empty;
-                        //byte[] responseBytes_cp = new byte[1024 * 5]; // 根据需要设置合适的大小
-                        //bool success_cp = Global.G_ELe.getResult_TY(ref response_cp, ref responseBytes_cp);
-                        //if (success_cp)
-                        //{
-                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
-                        //    string result = response_cp.Substring(0, 5);
-                        //    ele_lb2.Text = result;
-                        //}
-
-                        //string read_cv = "STATic:CV:HIGH:LEVel?\r\n";
-                        //Global.G_ELe.sendData_TY(read_cv);
-                        //string response_cv = string.Empty;
-                        //byte[] responseBytes_cv = new byte[1024 * 5]; // 根据需要设置合适的大小
-                        //bool success_cv = Global.G_ELe.getResult_TY(ref response_cv, ref responseBytes_cv);
-                        //if (success_cv)
-                        //{
-                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
-                        //    string result = response_cv.Substring(0, 5);
-                        //    ele_lb5.Text = result;
-                        //}
-
-                        //string read_cc = "STATic:CC:HIGH:LEVel?\r\n";
-                        //Global.G_ELe.sendData_TY(read_cc);
-                        //string response_cc = string.Empty;
-                        //byte[] responseBytes_cc = new byte[1024 * 5]; // 根据需要设置合适的大小
-                        //bool success_cc = Global.G_ELe.getResult_TY(ref response_cc, ref responseBytes_cc);
-                        //if (success_cc)
-                        //{
-                        //    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
-                        //    string result = response_cc.Substring(0, 5);
-                        //    ele_lb8.Text = result;
-                        //}
-
+                        //Ele_timer.Start();
                     }
                     Ele_success = true;
                 }
@@ -730,13 +655,13 @@ namespace BFS
         }
         private void Read_E_CC() 
         {
-            Task.Run(() =>
-            {
+            //Task.Run(() =>
+            //{
                 string read_cc = "STATic:CC:HIGH:LEVel?\r\n";
                 Global.G_ELe.sendData_TY(read_cc);
 
-                this.Invoke((MethodInvoker)delegate
-                {
+                //this.Invoke((MethodInvoker)delegate
+                //{
                     string response_cc = string.Empty;
                     byte[] Bytes_cc = new byte[1024 * 5]; // 根据需要设置合适的大小
                     bool success_cc = Global.G_ELe.getResult_TY(ref response_cc, ref Bytes_cc);
@@ -746,17 +671,17 @@ namespace BFS
                         string result_cc = response_cc.Substring(0, 5);
                         ele_lb5.Text = result_cc;
                     }
-                });
-            });
+                //});
+            //});
         }
         private void Read_E_CV()
         {
-            Task.Run(() => {
+            //Task.Run(() => {
                 string read_cv = "STATic:CV:HIGH:LEVel?\r\n";
                 Global.G_ELe.sendData_TY(read_cv);
 
-                this.Invoke((MethodInvoker)delegate
-                {
+                //this.Invoke((MethodInvoker)delegate
+                //{
                     string response_cv = string.Empty;
                     byte[] Bytes_cv = new byte[1024 * 5]; // 根据需要设置合适的大小
                     bool success_cv = Global.G_ELe.getResult_TY(ref response_cv, ref Bytes_cv);
@@ -766,8 +691,8 @@ namespace BFS
                         string result_cv = response_cv.Substring(0, 5);
                         ele_lb2.Text = result_cv;
                     }
-                });
-            });
+            //    });
+            //});
         }
         private void Read_E_CR()
         {
@@ -1090,185 +1015,6 @@ namespace BFS
         {
             if (Global.G_Rel.getRelay_connected())
             {
-                /*try
-                  {
-                      // 构造指令，确保使用正确的十六进制值
-                      string command = $"AT+STACH1=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器1重置失败: " + ex.Message);
-                  }
-
-                  try
-                  {
-                      string command = $"AT+STACH2=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器2重置失败: " + ex.Message);
-                  }
-
-                  try
-                  {
-                      string command = $"AT+STACH3=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器3重置失败: " + ex.Message);
-                  }
-
-                  try
-                  {
-                      string command = $"AT+STACH4=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器4重置失败: " + ex.Message);
-                  }
-
-                  try
-                  {
-                      string command = $"AT+STACH5=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器5重置失败: " + ex.Message);
-                  }
-
-                  try
-                  {
-                      string command = $"AT+STACH6=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器6重置失败: " + ex.Message);
-                  }
-
-                  try
-                  {
-                      string command = $"AT+STACH7=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器7重置失败: " + ex.Message);
-                  }
-
-                  try
-                  {
-                      string command = $"AT+STACH8=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器8重置失败: " + ex.Message);
-                  }
-
-                  try
-                  {
-                      string command = $"AT+STACH9=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器9重置失败: " + ex.Message);
-                  }
-
-
-                  try
-                  {
-                      string command = $"AT+STACH10=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器10重置失败: " + ex.Message);
-                  }
-
-
-                  try
-                  {
-                      string command = $"AT+STACH11=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器11重置失败: " + ex.Message);
-                  }
-
-                  try
-                  {
-                      string command = $"AT+STACH12=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器12重置失败: " + ex.Message);
-                  }
-
-                  try
-                  {
-                      string command = $"AT+STACH13=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器13重置失败: " + ex.Message);
-                  }
-
-                  try
-                  {
-                      string command = $"AT+STACH14=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器14重置失败: " + ex.Message);
-                  }
-
-                  try
-                  {
-                      string command = $"AT+STACH15=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器15重置失败: " + ex.Message);
-                  }
-
-                  try
-                  {
-                      string command = $"AT+STACH16=0\r\n";
-                      Global.G_Rel.sendData_TY(command);
-                      receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine("继电器16重置失败: " + ex.Message);
-                  }*/
-
                 string prefix = "AT+STACH";
                 string suffix = "\r\n";
                 int[] relayNumbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
@@ -1335,36 +1081,6 @@ namespace BFS
                         }
                     });
                 });
-
-                /*try
-                {
-                    // 构造指令，确保使用正确的十六进制值
-                    string command = $"000000000006000300020001";
-                    Global.G_lh.sendData_TY(command);
-                    //receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("发送指令失败: " + ex.Message);
-                }
-
-                string responseText = string.Empty;
-                byte[] responseBytes = new byte[1024 * 5]; // 根据需要设置合适的大小
-                bool success = Global.G_lh.getResult_TY(ref responseText, ref responseBytes);
-                if (success)
-                {
-                    //receivingBox.Items.Add($"{DateTime.Now} 接收命令: " + responseText);
-                    string temp2 = responseText.Substring(18, 4);
-                    int decimalValue = HexStringToDecimal(temp2);
-                    double result = decimalValue / 100.0;
-                    Temp_label2.Text = result.ToString("F2");
-
-                    //判断阈值
-                    if (result > 50 && result < 0)
-                    {
-                        MessageBox.Show("温度异常！");
-                    }
-                }*/
             }
 
             if (Global.G_Power.getPow_connected())
@@ -1414,46 +1130,6 @@ namespace BFS
                         }
                     });
                 });
-                /*try
-                {
-                    // 构造指令，确保使用正确的十六进制值
-                    //00104006400023014
-                    string command = $"0104006400023014";
-                    Global.G_Power.sendData_TY(command);
-                    //receivingBox.Items.Add($"{DateTime.Now} 发送命令: " + command);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("发送指令失败: " + ex.Message);
-                }
-
-                string responseText = string.Empty;
-                byte[] responseBytes = new byte[1024 * 5]; // 根据需要设置合适的大小
-                bool success = Global.G_Power.getResult_TY(ref responseText, ref responseBytes);
-                if (success)
-                {
-                    //receivingBox.Items.Add($"{DateTime.Now} 接收指令: " + responseText);
-                    //索引 7 开始提取 4 个字符长度
-                    string Pow_Vol = responseText.Substring(6, 4);
-                    //将十六进制字符串 转换为十进制整数
-                    int pow_vol = Convert.ToInt32(Pow_Vol, 16);
-                    //将十进制数除以 100 并保留两位小数
-                    double result = pow_vol / 10.0;
-                    //F2 格式化为两位小数
-                    string Pow_Vol_Result = result.ToString("F2");
-
-                    // 更新 UI 控件
-                    vol_label4.Text = Pow_Vol_Result;
-                    // 打印结果
-                    Console.WriteLine("数据为：" + Pow_Vol_Result);
-
-                    string Pow_Ele = responseText.Substring(10, 4);
-                    int pow_ele = Convert.ToInt32(Pow_Ele, 16);
-                    double result2 = pow_ele / 100.0;
-                    string Pow_Ele_Result = result2.ToString("F2");
-                    Elec_label4.Text = Pow_Ele_Result;
-                    Console.WriteLine("数据为：" + Pow_Ele_Result);
-                }*/
             }
         }
 
@@ -1490,6 +1166,8 @@ namespace BFS
                 default:
                     break;
             }
+            Power_timer.Stop();
+
             // 更新 currentIndex 以准备下一次调用  
             currentIndex++;
             if (currentIndex > 4)
@@ -1526,5 +1204,18 @@ namespace BFS
             Global.G_ELe.sendData_TY(P_data4);
         }
 
+        private void HeadStop_btn_Click(object sender, EventArgs e)
+        {
+            Reset_device();
+            StopCountdown();
+        }
+
+        private void Recon_btn_Click(object sender, EventArgs e)
+        {
+            Ele_connection();
+            Power_connection();
+            lh_connection();
+            Relay_connection();
+        }
     }
 }
